@@ -14,6 +14,9 @@ const page = await ctx.newPage();
 const resp = await page.goto(url, { waitUntil: 'networkidle', timeout: 45000 });
 await page.evaluate(() => document.fonts.ready); await page.waitForTimeout(500);
 if (hideFixed === '1') await page.evaluate(() => { for (const el of document.querySelectorAll('body *')) if (getComputedStyle(el).position === 'fixed') el.style.display = 'none'; });
+// Scroll through the page first: loading="lazy" images below the fold are otherwise captured as empty boxes.
+for (let y = 0, H = await page.evaluate(() => document.documentElement.scrollHeight); y < H; y += 600) { await page.evaluate((y) => scrollTo(0, y), y); await page.waitForTimeout(80); }
+await page.evaluate(() => scrollTo(0, 0)); await page.waitForTimeout(400);
 const height = await page.evaluate(() => document.documentElement.scrollHeight);
 if (n <= 1) { await page.screenshot({ path: out, fullPage: true }); }
 else {

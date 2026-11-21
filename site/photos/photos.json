@@ -1,26 +1,153 @@
 {
+ "placeholder": true,
  "_note": "كل الصور مؤقتة للتصميم (placeholder). مصدرها مواقع أخرى للمالك بإذنه (2026-11-21) وصورتان برخصة مفتوحة من نتائج بحث الصور. تُستبدل بصور العميل قبل النشر.",
  "photos": [
-  {"key":"host-pour","file":"host-pouring-guest-majlis.webp","alt":"قهوجي يصبّ القهوة السعودية من دلّة ذهبية لضيف في مجلس","from":"ghaida-diafa","focus":"50% 30%"},
-  {"key":"team-row","file":"hosts-team-row-hall.webp","alt":"فريق من القهوجيين والصبّابين مصطفّون في قاعة مناسبات","from":"ghaida-diafa","focus":"50% 45%"},
-  {"key":"elder-pour","file":"elder-host-pouring-coffee.webp","alt":"مضيف بالبشت يصبّ القهوة في فنجان داخل مجلس","from":"ghaida-diafa","focus":"50% 30%"},
-  {"key":"hall","file":"palace-hall-reception-hosts.webp","alt":"صبّابون يستقبلون الضيوف عند مدخل قاعة مناسبات","from":"ghaida-diafa","focus":"50% 50%"},
-  {"key":"night-dallahs","file":"majlis-golden-dallahs-dates-night.webp","alt":"دلال ذهبية وفناجين وتمر في جلسة مسائية على ضوء الفوانيس","from":"ghaida-diafa","focus":"40% 50%"},
-  {"key":"tent","file":"heritage-tent-coffee-corner.webp","alt":"ركن قهوة في خيمة تراثية بفرش السدو","from":"ghaida-diafa","focus":"50% 60%"},
-  {"key":"pour-close","file":"pouring-coffee-finjan-closeup.webp","alt":"صبّ القهوة السعودية من الدلّة في فنجان أبيض","from":"ghaida-diafa","focus":"50% 50%"},
-  {"key":"table-dallah","file":"royal-dallah-dates-finjan-table.webp","alt":"دلّة وفناجين وتمر على طاولة في مجلس","from":"ghaida-diafa","focus":"50% 55%"},
-  {"key":"dallahs-row","file":"dallahs-row-finjan-trays.webp","alt":"صف من الدلال الذهبية وصواني الفناجين في ركن الضيافة","from":"ghaida-diafa","focus":"50% 50%"},
-  {"key":"buffet","file":"golden-coffee-station-buffet.webp","alt":"ركن ضيافة ذهبي عليه دلال وفناجين وتمر","from":"ghaida-diafa","focus":"50% 50%"},
-  {"key":"flowers","file":"dallahs-dates-white-flowers.webp","alt":"دلال وتمر وورد أبيض على طاولة ضيافة في قاعة","from":"ghaida-diafa","focus":"50% 55%"},
-  {"key":"incense","file":"coffee-station-incense-dates.webp","alt":"دلّة ومبخرة وتمر على طاولة داكنة","from":"ghaida-diafa","focus":"50% 60%"},
-  {"key":"set","file":"golden-coffee-set-arrangement.webp","alt":"طقم قهوة ذهبي من دلال وفناجين مرتّب على طاولة","from":"ghaida-diafa","focus":"50% 50%"},
-  {"key":"majlis-tall","file":"majlis-dallah-tall.webp","alt":"طاولة ضيافة عليها فناجين وتمر وورد تحت ثريا","from":"ghaida-diafa","focus":"50% 65%"},
-  {"key":"dallah-tall","file":"royal-dallah-tall.webp","alt":"دلّة ذهبية وفناجين وتمر على طاولة تحت ضوء فانوس","from":"ghaida-diafa","focus":"50% 75%"},
-  {"key":"dates","file":"dates-sweets-golden-tiers.webp","alt":"تمر وحلويات على حامل ذهبي من طبقتين","from":"ghaida-diafa","focus":"50% 50%"},
-  {"key":"majlis-lamp","file":"majlis-dallahs-lamp.webp","alt":"دلّتان وتمر على طاولة في مجلس بإضاءة دافئة","from":"diafa-luxe-platform","focus":"45% 60%"},
-  {"key":"three-finjans","file":"dallah-three-finjans.webp","alt":"دلّة ذهبية وثلاثة فناجين وصحن تمر","from":"diafa-luxe-platform","focus":"50% 55%"},
-  {"key":"lounge","file":"lounge-dallahs-row.webp","alt":"صف من الدلال والفناجين على طاولة في صالة استقبال","from":"diafa-luxe-platform","focus":"50% 60%"},
-  {"key":"tea","file":"tea-glass-warm-light.jpg","alt":"كوب شاي زجاجي يتصاعد منه البخار في ضوء دافئ","from":"https://www.pickpik.com/teacup-cup-of-tea-tee-drink-hot-steam-2469","focus":"35% 50%"},
-  {"key":"mint-tea","file":"mint-tea-glass.jpg","alt":"كوب شاي زجاجي عليه أوراق نعناع","from":"https://www.pickpik.com/en/search?q=tea+-+hot+drink","focus":"50% 50%"}
+  {
+   "key": "host-pour",
+   "file": "host-pouring-guest-majlis.webp",
+   "alt": "قهوجي يصبّ القهوة السعودية من دلّة ذهبية لضيف في مجلس",
+   "from": "ghaida-diafa",
+   "focus": "50% 30%"
+  },
+  {
+   "key": "team-row",
+   "file": "hosts-team-row-hall.webp",
+   "alt": "فريق من القهوجيين والصبّابين مصطفّون في قاعة مناسبات",
+   "from": "ghaida-diafa",
+   "focus": "50% 45%"
+  },
+  {
+   "key": "elder-pour",
+   "file": "elder-host-pouring-coffee.webp",
+   "alt": "مضيف بالبشت يصبّ القهوة في فنجان داخل مجلس",
+   "from": "ghaida-diafa",
+   "focus": "50% 30%"
+  },
+  {
+   "key": "hall",
+   "file": "palace-hall-reception-hosts.webp",
+   "alt": "صبّابون يستقبلون الضيوف عند مدخل قاعة مناسبات",
+   "from": "ghaida-diafa",
+   "focus": "50% 50%"
+  },
+  {
+   "key": "night-dallahs",
+   "file": "majlis-golden-dallahs-dates-night.webp",
+   "alt": "دلال ذهبية وفناجين وتمر في جلسة مسائية على ضوء الفوانيس",
+   "from": "ghaida-diafa",
+   "focus": "40% 50%"
+  },
+  {
+   "key": "tent",
+   "file": "heritage-tent-coffee-corner.webp",
+   "alt": "ركن قهوة في خيمة تراثية بفرش السدو",
+   "from": "ghaida-diafa",
+   "focus": "50% 60%"
+  },
+  {
+   "key": "pour-close",
+   "file": "pouring-coffee-finjan-closeup.webp",
+   "alt": "صبّ القهوة السعودية من الدلّة في فنجان أبيض",
+   "from": "ghaida-diafa",
+   "focus": "50% 50%"
+  },
+  {
+   "key": "table-dallah",
+   "file": "royal-dallah-dates-finjan-table.webp",
+   "alt": "دلّة وفناجين وتمر على طاولة في مجلس",
+   "from": "ghaida-diafa",
+   "focus": "50% 55%"
+  },
+  {
+   "key": "dallahs-row",
+   "file": "dallahs-row-finjan-trays.webp",
+   "alt": "صف من الدلال الذهبية وصواني الفناجين في ركن الضيافة",
+   "from": "ghaida-diafa",
+   "focus": "50% 50%"
+  },
+  {
+   "key": "buffet",
+   "file": "golden-coffee-station-buffet.webp",
+   "alt": "ركن ضيافة ذهبي عليه دلال وفناجين وتمر",
+   "from": "ghaida-diafa",
+   "focus": "50% 50%"
+  },
+  {
+   "key": "flowers",
+   "file": "dallahs-dates-white-flowers.webp",
+   "alt": "دلال وتمر وورد أبيض على طاولة ضيافة في قاعة",
+   "from": "ghaida-diafa",
+   "focus": "50% 55%"
+  },
+  {
+   "key": "incense",
+   "file": "coffee-station-incense-dates.webp",
+   "alt": "دلّة ومبخرة وتمر على طاولة داكنة",
+   "from": "ghaida-diafa",
+   "focus": "50% 60%"
+  },
+  {
+   "key": "set",
+   "file": "golden-coffee-set-arrangement.webp",
+   "alt": "طقم قهوة ذهبي من دلال وفناجين مرتّب على طاولة",
+   "from": "ghaida-diafa",
+   "focus": "50% 50%"
+  },
+  {
+   "key": "majlis-tall",
+   "file": "majlis-dallah-tall.webp",
+   "alt": "طاولة ضيافة عليها فناجين وتمر وورد تحت ثريا",
+   "from": "ghaida-diafa",
+   "focus": "50% 65%"
+  },
+  {
+   "key": "dallah-tall",
+   "file": "royal-dallah-tall.webp",
+   "alt": "دلّة ذهبية وفناجين وتمر على طاولة تحت ضوء فانوس",
+   "from": "ghaida-diafa",
+   "focus": "50% 75%"
+  },
+  {
+   "key": "dates",
+   "file": "dates-sweets-golden-tiers.webp",
+   "alt": "تمر وحلويات على حامل ذهبي من طبقتين",
+   "from": "ghaida-diafa",
+   "focus": "50% 50%"
+  },
+  {
+   "key": "majlis-lamp",
+   "file": "majlis-dallahs-lamp.webp",
+   "alt": "دلّتان وتمر على طاولة في مجلس بإضاءة دافئة",
+   "from": "diafa-luxe-platform",
+   "focus": "45% 60%"
+  },
+  {
+   "key": "three-finjans",
+   "file": "dallah-three-finjans.webp",
+   "alt": "دلّة ذهبية وثلاثة فناجين وصحن تمر",
+   "from": "diafa-luxe-platform",
+   "focus": "50% 55%"
+  },
+  {
+   "key": "lounge",
+   "file": "lounge-dallahs-row.webp",
+   "alt": "صف من الدلال والفناجين على طاولة في صالة استقبال",
+   "from": "diafa-luxe-platform",
+   "focus": "50% 60%"
+  },
+  {
+   "key": "tea",
+   "file": "tea-glass-warm-light.jpg",
+   "alt": "كوب شاي زجاجي يتصاعد منه البخار في ضوء دافئ",
+   "from": "https://www.pickpik.com/teacup-cup-of-tea-tee-drink-hot-steam-2469",
+   "focus": "35% 50%"
+  },
+  {
+   "key": "mint-tea",
+   "file": "mint-tea-glass.jpg",
+   "alt": "كوب شاي زجاجي عليه أوراق نعناع",
+   "from": "https://www.pickpik.com/en/search?q=tea+-+hot+drink",
+   "focus": "50% 50%"
+  }
  ]
 }

@@ -19,7 +19,7 @@ for (let i = 0; i < args.length; i += 2) {
       await page.screenshot({ path: `${outDir}/shots/${label}-${width}.png` });
       Object.assign(r, await page.evaluate(() => {
         const vh = innerHeight, q = s => [...document.querySelectorAll(s)], cs = el => getComputedStyle(el);
-        const box = el => el.getBoundingClientRect(), shown = el => { const b = box(el), s = cs(el); return b.width > 0 && b.height > 0 && s.visibility !== 'hidden' && s.opacity !== '0'; };
+        const box = el => el.getBoundingClientRect(), shown = el => { const b = box(el), s = cs(el); return b.width > 0 && b.height > 0 && s.visibility !== 'hidden' && s.opacity !== '0' && (el.checkVisibility ? el.checkVisibility() : true); }; // checkVisibility: content of a closed <details> still has a box in Chromium
         // WCAG 2.5.8 exempts links inside a sentence, so inline links that share a line with other text are skipped.
         const inline = el => el.tagName === 'A' && cs(el).display === 'inline' && (el.parentElement?.innerText || '').trim().length > (el.innerText || '').trim().length + 8;
         const taps = q('a[href],button,[role=button],input:not([type=hidden]),select,textarea,summary').filter(shown).filter(el => !inline(el));
