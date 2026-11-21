@@ -7,6 +7,9 @@
 | `static-server.mjs` | خادم ملفات ثابتة مع gzip على `127.0.0.1` لمجلد بناء |
 | `probe.mjs` | يفتح الصفحة بمقاس 390×844 ويلتقط أول شاشة ويقيس بنيتها |
 | `lh-summary.mjs` | يجمع تقارير Lighthouse ويحسب الوسيط لكل موقع |
+| `responsive.mjs` | يفتح الصفحة على ستة مقاسات ويعدّ مشاكل المرونة واللمس |
+| `fullshot.mjs` | لقطة للصفحة كاملة بعرض جوال، مقسومة أعمدة لتُقرأ في صورة واحدة |
+| `fonts.py` | يقارن خطوطًا عربية: الترخيص، الاسم المحجوز، المحارف الناقصة، الحجم بعد الاقتطاع، وصفحة عيّنات |
 
 ## التثبيت
 ```bash
@@ -52,6 +55,22 @@ node scripts/measure/responsive.mjs <مجلد-المخرجات> <الاسم> <ا
 يخرج `<مجلد-المخرجات>/shots/<الاسم>-<العرض>.png` و `responsive-<الاسم>.json`، وفيه لكل عرض:
 `overflowX` · `taps` و`tapsUnder24` و`tapsUnder48` · `minFontPx` و`textUnder12` · `fieldsUnder16` · `h1Px` و`h1Lines` · `actionInFirstScreen` · `fixedCoverPct` · `screens`.
 الحدود في [skills/mobile-first](../../skills/mobile-first/SKILL.md).
+
+## لقطة الصفحة كاملة `fullshot.mjs`
+```bash
+node scripts/measure/fullshot.mjs <الصورة.png> <الرابط> [العرض=390] [الأعمدة=1] [إخفاء-الثابت=0]
+```
+لصفحاتنا نحن (المخطط الهيكلي، عيّنات الخطوط). تُؤخذ مع إعداد «تقليل الحركة» حتى لا تظهر الأقسام البعيدة نصف شفافة. `إخفاء-الثابت=1` يخفي العناصر الثابتة: في اللقطة الطويلة يُرسم الشريط السفلي مرة واحدة فوق محتوى لا علاقة له به.
+
+## مقارنة الخطوط `fonts.py`
+```bash
+pip install --target .tools/pylib brotli   # fonttools موجودة في البيئة؛ brotli لازمة لـWOFF2
+PYTHONPATH=.tools/pylib python3 scripts/measure/fonts.py .tools/fonts
+node scripts/measure/static-server.mjs .tools/fonts/spec 4141 &
+node scripts/measure/fullshot.mjs .tools/fonts/specimen.png http://127.0.0.1:4141/ 390 2
+```
+ينزّل الخطوط من `github.com/google/fonts` ويكتب `fonts.json` وصفحة العيّنات. لإضافة خط: سطر في قائمة `FONTS` أعلى الملف.
+الأرقام حقائق ملفات. **لا تقول شيئًا عن شكل الخط**: العيّنة تُفتح على جوال حقيقي. نتيجة 2026-11-21: [arabic-fonts.md](../../docs/research/arabic-fonts.md).
 
 ## حدود تُكتب مع كل رقم
 - قياس مختبري. جوجل تحكم على بيانات الزوار الحقيقيين ([standards.md](../../docs/research/standards.md) البند 1).

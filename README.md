@@ -1,6 +1,6 @@
 # tayfaldiafa
 
-موقع ضيافة فاخر — **قيد التأسيس**. لا يوجد كود للموقع بعد؛ الموجود حاليًا: نظام الذاكرة، المعايير المرجعية، دراسة مقيسة لمواقع سابقة، بحث الفخامة وتجربة الاستخدام، ومسودة مهارات لبناء مواقع العملاء.
+موقع «طيف الضيافة» (قهوجيين وصبابين، المنطقة الشرقية) — **قيد التأسيس**. لا يوجد كود للموقع بعد. الموجود: نظام الذاكرة، المعايير المرجعية، دراسات مقيسة، ملخص العميل، هيكل الموقع المقترح مع مخطط هيكلي يُفتح على الجوال، مقارنة الخطوط، ومهارات لبناء مواقع العملاء.
 
 | أنا… | أبدأ من |
 |---|---|
@@ -23,6 +23,12 @@
 | [docs/research/own-sites-study.md](docs/research/own-sites-study.md) | ماذا نأخذ من مواقع المالك الأربعة وماذا نترك؟ |
 | [docs/research/luxury-ux-research.md](docs/research/luxury-ux-research.md) | كيف تبدو الفخامة وكيف تُبنى أول شاشة ورحلة التمرير؟ |
 | [docs/research/account-inventory.md](docs/research/account-inventory.md) | ما الموجود في حساب المالك وما قُرئ منه؟ |
+| [docs/client/brief.md](docs/client/brief.md) | من العميل، ماذا يريد، وماذا وُعد به؟ |
+| [docs/research/search-intent-east.md](docs/research/search-intent-east.md) | ماذا يكتب الناس في جوجل في الشرقية، ومن يظهر لهم؟ |
+| [docs/design/site-structure.md](docs/design/site-structure.md) | ما الصفحات، وما ترتيب الرئيسية على الجوال؟ |
+| [docs/design/wireframe/](docs/design/wireframe/index.html) | كيف يبدو الترتيب على جوال؟ (مخطط رمادي، ليس تصميمًا) |
+| [docs/research/arabic-fonts.md](docs/research/arabic-fonts.md) | أي خط؟ الوزن والترخيص والعيّنة |
+| [docs/research/owner-skill-review.md](docs/research/owner-skill-review.md) | ما الذي أُخذ من مهارة المالك وما صُحّح؟ |
 | [skills/](skills/README.md) | ما الخطوات لبناء موقع عميل جديد؟ |
 | [scripts/measure/](scripts/measure/README.md) | كيف نقيس موقعًا؟ |
 | [LESSONS.md](LESSONS.md) | أخطاء هذا المشروع وكيف نمنع تكرارها |

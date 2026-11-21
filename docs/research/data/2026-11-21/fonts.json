@@ -1,0 +1,390 @@
+{
+ "codepoints": 172,
+ "source": "github.com/google/fonts (ofl/)",
+ "fonts": [
+  {
+   "family": "Aref Ruqaa",
+   "file": "ArefRuqaa-Bold.ttf",
+   "slug": "ArefRuqaa-Bold",
+   "role": "display",
+   "weight": 700,
+   "ofl_1_1": true,
+   "reserved_font_names": [
+    "EURM10"
+   ],
+   "fsType": 0,
+   "axes": [],
+   "glyphs": 739,
+   "missing": [
+    "0x66b",
+    "0x66c"
+   ],
+   "ttf_kb": 120.9,
+   "subset_woff2_kb": 46.7,
+   "full_woff2_kb": 59.7,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.56
+  },
+  {
+   "family": "Amiri",
+   "file": "Amiri-Bold.ttf",
+   "slug": "Amiri-Bold",
+   "role": "display",
+   "weight": 700,
+   "ofl_1_1": true,
+   "reserved_font_names": [],
+   "fsType": 0,
+   "axes": [],
+   "glyphs": 6551,
+   "missing": [],
+   "ttf_kb": 403.8,
+   "subset_woff2_kb": 54.7,
+   "full_woff2_kb": 136.9,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.76
+  },
+  {
+   "family": "El Messiri",
+   "file": "ElMessiri[wght].ttf",
+   "slug": "ElMessiri",
+   "role": "display",
+   "weight": 700,
+   "ofl_1_1": true,
+   "reserved_font_names": [],
+   "fsType": 0,
+   "axes": [
+    [
+     "wght",
+     400.0,
+     400.0,
+     700.0
+    ]
+   ],
+   "glyphs": 648,
+   "missing": [],
+   "ttf_kb": 135.4,
+   "subset_woff2_kb": 29.8,
+   "full_woff2_kb": 55.3,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.56
+  },
+  {
+   "family": "Reem Kufi",
+   "file": "ReemKufi[wght].ttf",
+   "slug": "ReemKufi",
+   "role": "display",
+   "weight": 700,
+   "ofl_1_1": true,
+   "reserved_font_names": [
+    "Josefin Sans"
+   ],
+   "fsType": 0,
+   "axes": [
+    [
+     "wght",
+     400.0,
+     400.0,
+     700.0
+    ]
+   ],
+   "glyphs": 815,
+   "missing": [
+    "0x66a",
+    "0x66b",
+    "0x66c"
+   ],
+   "ttf_kb": 124.2,
+   "subset_woff2_kb": 22.1,
+   "full_woff2_kb": 48.0,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.5
+  },
+  {
+   "family": "Markazi Text",
+   "file": "MarkaziText[wght].ttf",
+   "slug": "MarkaziText",
+   "role": "display",
+   "weight": 700,
+   "ofl_1_1": true,
+   "reserved_font_names": [],
+   "fsType": 0,
+   "axes": [
+    [
+     "wght",
+     400.0,
+     400.0,
+     700.0
+    ]
+   ],
+   "glyphs": 1239,
+   "missing": [
+    "0x66a"
+   ],
+   "ttf_kb": 289.9,
+   "subset_woff2_kb": 43.8,
+   "full_woff2_kb": 84.6,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.2
+  },
+  {
+   "family": "Cairo",
+   "file": "Cairo[slnt,wght].ttf",
+   "slug": "Cairo",
+   "role": "display",
+   "weight": 700,
+   "ofl_1_1": true,
+   "reserved_font_names": [],
+   "fsType": 0,
+   "axes": [
+    [
+     "wght",
+     200.0,
+     400.0,
+     1000.0
+    ],
+    [
+     "slnt",
+     -11.0,
+     0.0,
+     11.0
+    ]
+   ],
+   "glyphs": 1956,
+   "missing": [],
+   "ttf_kb": 585.5,
+   "subset_woff2_kb": 82.8,
+   "full_woff2_kb": 172.8,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.87
+  },
+  {
+   "family": "IBM Plex Sans Arabic",
+   "file": "IBMPlexSansArabic-Regular.ttf",
+   "slug": "IBMPlexSansArabic-Regular",
+   "role": "body",
+   "weight": 400,
+   "ofl_1_1": true,
+   "reserved_font_names": [
+    "Plex"
+   ],
+   "fsType": 0,
+   "axes": [],
+   "glyphs": 1706,
+   "missing": [],
+   "ttf_kb": 230.4,
+   "subset_woff2_kb": 27.8,
+   "full_woff2_kb": 69.8,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.5
+  },
+  {
+   "family": "IBM Plex Sans Arabic",
+   "file": "IBMPlexSansArabic-SemiBold.ttf",
+   "slug": "IBMPlexSansArabic-SemiBold",
+   "role": "body",
+   "weight": 600,
+   "ofl_1_1": true,
+   "reserved_font_names": [
+    "Plex"
+   ],
+   "fsType": 0,
+   "axes": [],
+   "glyphs": 1706,
+   "missing": [],
+   "ttf_kb": 238.9,
+   "subset_woff2_kb": 29.5,
+   "full_woff2_kb": 74.2,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.5
+  },
+  {
+   "family": "Noto Naskh Arabic",
+   "file": "NotoNaskhArabic[wght].ttf",
+   "slug": "NotoNaskhArabic",
+   "role": "body",
+   "weight": 400,
+   "ofl_1_1": true,
+   "reserved_font_names": [],
+   "fsType": 0,
+   "axes": [
+    [
+     "wght",
+     400.0,
+     400.0,
+     700.0
+    ]
+   ],
+   "glyphs": 1719,
+   "missing": [],
+   "ttf_kb": 300.4,
+   "subset_woff2_kb": 33.8,
+   "full_woff2_kb": 120.6,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.7
+  },
+  {
+   "family": "Tajawal",
+   "file": "Tajawal-Regular.ttf",
+   "slug": "Tajawal-Regular",
+   "role": "body",
+   "weight": 400,
+   "ofl_1_1": true,
+   "reserved_font_names": [],
+   "fsType": 0,
+   "axes": [],
+   "glyphs": 465,
+   "missing": [
+    "0x66b",
+    "0x66c",
+    "0x671"
+   ],
+   "ttf_kb": 58.9,
+   "subset_woff2_kb": 12.7,
+   "full_woff2_kb": 20.3,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.2
+  },
+  {
+   "family": "Tajawal",
+   "file": "Tajawal-Bold.ttf",
+   "slug": "Tajawal-Bold",
+   "role": "body",
+   "weight": 700,
+   "ofl_1_1": true,
+   "reserved_font_names": [],
+   "fsType": 0,
+   "axes": [],
+   "glyphs": 474,
+   "missing": [
+    "0x66b",
+    "0x66c",
+    "0x671"
+   ],
+   "ttf_kb": 58.6,
+   "subset_woff2_kb": 13.1,
+   "full_woff2_kb": 20.5,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.2
+  },
+  {
+   "family": "Almarai",
+   "file": "Almarai-Regular.ttf",
+   "slug": "Almarai-Regular",
+   "role": "body",
+   "weight": 400,
+   "ofl_1_1": true,
+   "reserved_font_names": [],
+   "fsType": 0,
+   "axes": [],
+   "glyphs": 579,
+   "missing": [],
+   "ttf_kb": 149.2,
+   "subset_woff2_kb": 27.9,
+   "full_woff2_kb": 48.1,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.12
+  },
+  {
+   "family": "Almarai",
+   "file": "Almarai-Bold.ttf",
+   "slug": "Almarai-Bold",
+   "role": "body",
+   "weight": 700,
+   "ofl_1_1": true,
+   "reserved_font_names": [],
+   "fsType": 0,
+   "axes": [],
+   "glyphs": 579,
+   "missing": [],
+   "ttf_kb": 153.0,
+   "subset_woff2_kb": 28.5,
+   "full_woff2_kb": 49.4,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.12
+  },
+  {
+   "family": "Noto Sans Arabic",
+   "file": "NotoSansArabic[wdth,wght].ttf",
+   "slug": "NotoSansArabic",
+   "role": "body",
+   "weight": 400,
+   "ofl_1_1": true,
+   "reserved_font_names": [],
+   "fsType": 0,
+   "axes": [
+    [
+     "wght",
+     100.0,
+     400.0,
+     900.0
+    ],
+    [
+     "wdth",
+     62.5,
+     100.0,
+     100.0
+    ]
+   ],
+   "glyphs": 1711,
+   "missing": [],
+   "ttf_kb": 824.9,
+   "subset_woff2_kb": 92.4,
+   "full_woff2_kb": 353.3,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 2.11
+  },
+  {
+   "family": "Readex Pro",
+   "file": "ReadexPro[HEXP,wght].ttf",
+   "slug": "ReadexPro",
+   "role": "body",
+   "weight": 400,
+   "ofl_1_1": true,
+   "reserved_font_names": [
+    "RevReading Lexend"
+   ],
+   "fsType": 0,
+   "axes": [
+    [
+     "wght",
+     160.0,
+     400.0,
+     700.0
+    ],
+    [
+     "HEXP",
+     0.0,
+     0.0,
+     100.0
+    ]
+   ],
+   "glyphs": 1061,
+   "missing": [],
+   "ttf_kb": 272.0,
+   "subset_woff2_kb": 66.2,
+   "full_woff2_kb": 119.3,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.25
+  },
+  {
+   "family": "Amiri",
+   "file": "Amiri-Regular.ttf",
+   "slug": "Amiri-Regular",
+   "role": "body",
+   "weight": 400,
+   "ofl_1_1": true,
+   "reserved_font_names": [],
+   "fsType": 0,
+   "axes": [],
+   "glyphs": 6710,
+   "missing": [],
+   "ttf_kb": 421.0,
+   "subset_woff2_kb": 53.9,
+   "full_woff2_kb": 145.7,
+   "subset_keeps_copyright_and_licence": true,
+   "hhea_line_height": 1.76
+  }
+ ],
+ "date": "2026-11-21",
+ "tool": "scripts/measure/fonts.py"
+}

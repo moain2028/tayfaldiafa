@@ -23,7 +23,18 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 - `skills/`: خمس مهارات جديدة (local-search-study، search-appearance، mobile-first، motion، after-launch).
 - `docs/research/standards.md`: البنود 13–19.
 
+- `docs/design/wireframe/`: مخطط هيكلي رمادي للصفحة الرئيسية (HTML و CSS فقط) وصورته.
+- `docs/research/arabic-fonts.md` وبياناته وصورة العيّنة: مقارنة 12 عائلة خط عربي بالوزن والترخيص والتغطية.
+- `scripts/measure/fonts.py` و`scripts/measure/fullshot.mjs`.
+- `docs/research/standards.md`: البندان 20 (حالات الفهرسة في Search Console) و21 (ترخيص الخطوط المفتوحة)، و`viewport-fit=cover`، و`prefers-reduced-motion`، وإلغاء `middleware` في Next.
+- `docs/research/data/2026-11-21/wireframe-responsive.json`.
+
 ### Changed
+- `skills/`: ‏after-launch و search-appearance و motion و mobile-first إلى 0.2، و arabic-web إلى 0.3.
+- `docs/research/owner-skill-review.md`: الملفات التي لم تكن مقروءة قُرئت (البند 6)، وصُحّح عمود «أين صار».
+- `docs/adr/0002-tech-stack.md`: تجربة المسار المتداخل وما وُجد في روابط القائمة. الحالة ما زالت «مقترح».
+- `docs/design/architecture.md` و`docs/research/reference-sites.md` و`README.md` و`scripts/measure/README.md` و`skills/README.md`: حُدّثت بما في الجولتين الثالثة والرابعة.
+- `docs/FACTS.md`: النطاق غير مسجَّل بفحصين. `AGENTS.md`: قاعدة «كاتب واحد». `LESSONS.md`: ثلاثة دروس.
 - `skills/` الخمس القديمة إلى 0.2 بما دُمج من مهارة المالك. `docs/FACTS.md` بحقائق العميل. `ADR-0002` بتجربة تعدد الصفحات.
 - `docs/adr/0002-tech-stack.md`: دليل مقيس وخيار رابع؛ الميل المبدئي من Astro إلى محرّك المالك. الحالة ما زالت «مقترح».
 - `scripts/check-memory.mjs`: يتجاوز `.refs/` و`.tools/`.

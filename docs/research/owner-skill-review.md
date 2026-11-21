@@ -9,7 +9,10 @@ verified: 2026-11-21
 
 **حدود المراجعة.** قرأتُ كاملًا: `PHILOSOPHY` · `SKILL` · `discovery/01,02,03,05` · `references/01,03,04,06,07,08,09` وأغلب `02` · `design/rtl-arabic` و`homepage-blueprint` وأول `design-tokens` · `animation/README` و`motion-performance` · `checklists/launch-checklist` · خمسة قوالب (sitemap, robots, schemas, city-service-page, page-plan).
 مررتُ بالبحث فقط على: `testing/*` · `animation/framer-motion-recipes` و`gsap-scrolltrigger` و`lenis-smooth-scroll` · `design/dark-mode`.
-**لم أقرأ:** `references/05-rendering-strategies` · `design/shadcn-setup` · `checklists/developer-checklist` · باقي القوالب · `CHANGELOG`. كلها خاصة بـNext.js ولم يُنقل منها شيء.
+**قُرئ في الجولة الرابعة (كان غير مقروء):** `references/05-rendering-strategies` · `design/shadcn-setup` · `checklists/developer-checklist` · القوالب العشرة الباقية (`layout`, `next.config`, `manifest`, `middleware`, `JsonLd`, `opengraph-image`, `not-found`, `error`, `global-error`, `loading`) · عناوين `CHANGELOG` وقسم تصحيحاته. ما خرج منها في البند 6.
+**ما زال غير مقروء كاملًا:** `templates/analytics-tracking.tsx` (قرأتُ تعليقاته فقط) · باقي نص `CHANGELOG`.
+
+**تصحيح على هذا الملف نفسه (الجولة الرابعة):** العمود «أين صار» في الجدول 1 كان يقول إن سبعة بنود دخلت مهارة بعينها، وعند البحث في ملفات المهارات لم أجدها هناك (بعضها غائب كليًّا، وبعضها في مهارة أخرى): «لا تشخّص من عدّاد»، `lastmod`، canonical، دروس الإعلانات، صيغتا `send_to` و`generate_lead`، الرابط الحقيقي للأزرار، وكيان النشاط الواحد. أُضيفت الآن إلى [after-launch](../../skills/after-launch/SKILL.md) و[search-appearance](../../skills/search-appearance/SKILL.md) (النسخة 0.2 من كلٍّ).
 
 ## 1) يُؤخذ — أثمن ما في المهارة
 | ما هو | أين في الأصل | حكم التحقق | أين صار |
@@ -75,6 +78,23 @@ verified: 2026-11-21
 | `gsap-scrolltrigger`، `lenis-smooth-scroll`، R3F، Lottie | وزن JavaScript بلا حاجة مثبتة، وخطف للتمرير. البديل: [motion](../../skills/motion/SKILL.md) |
 | `templates/page-plan.md` | قالب يُنتج الصفحات المتشابهة التي يحذّر منها `references/08` |
 | معرّفا إعلانات، ورقما حساب إعلاني، واسم موقع عميل (4 ملفات) | بيانات خاصة |
+
+## 6) ما خرج من الملفات التي قُرئت في الجولة الرابعة
+| ما هو | أين | الحكم |
+|---|---|---|
+| `middleware.ts` لتوحيد النطاق | `templates/middleware.ts` | **يُصحَّح:** "The middleware file convention is deprecated and has been renamed to proxy" ([standards.md](standards.md) البند 19). القالب قديم على Next 16 |
+| خط Cairo في القالب الجذر | `templates/layout.tsx` | أثقل خط عناوين في مقارنتنا: 82.8KB مقتطعًا ([arabic-fonts.md](arabic-fonts.md)). ليس خطأ؛ معلومة للاختيار |
+| «الوصف ≤ 160 حرفًا يتضمّن الكلمة المفتاحية» | `templates/layout.tsx` | مكرر من الجدول 2: لا حد بالأحرف |
+| تهريب `<` و`>` و`&` وفاصلَي الأسطر داخل JSON-LD | `templates/JsonLd.tsx` | **يُؤخذ كفكرة.** محرّك المالك يهرّب `<` (يكفي لمنع إغلاق الوسم) |
+| سياسة أمان محتوى صارمة تحجب طلبات التتبّع بصمت | `templates/next.config.ts` | **يُؤخذ:** خبرة المالك، دخلت [after-launch](../../skills/after-launch/SKILL.md) |
+| «touch targets ≥ 48×48» و«`prefers-reduced-motion` في كل الحركات» | `checklists/developer-checklist` | ✔ يوافق البندين 16 و17. والمخطط الهيكلي حقّق 48 لكل الأهداف |
+| «`FAQPage` فقط مع أسئلة ظاهرة» و«Rich Results Test يمر» | نفسه | مكرر من الجدول 2: النتيجة المنسّقة أُلغيت |
+| «FPS = 60 ثابت على Mobile throttled» | نفسه | بلا طريقة قياس مكتوبة |
+| «`short_name` ≤ 12 محرفًا»، «هامش أمان نحو 20% للأيقونة maskable» | `templates/manifest.ts` | بلا مصدر؛ لم أفتح مواصفة manifest |
+| «TTFB نحو 50ms» للصفحة الثابتة | `references/05` | رقم بلا قياس |
+| لموقع محتوى: Astro بدل تعقيد Next | `references/05` §6ب | يوافق توصية [ADR-0002](../adr/0002-tech-stack.md) |
+| Cache Components و PPR و`use cache` | `references/05` | خاص بتطبيقات Next. لا يُنقل |
+| shadcn و react-hook-form و zod | `design/shadcn-setup` | لتطبيقات React. نموذجنا أربعة حقول بلا مكتبة |
 
 ## 5) إن أراد المالك إصلاح الأصل
 الجدول 2 قائمة الإصلاح سطرًا بسطر. أستطيع تسليم نسخة مصحّحة من الملف المضغوط نفسه إن طلبها؛ لم أفعل لأن المطلوب هنا مهارات تُستعمل لأي تقنية.

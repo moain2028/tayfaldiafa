@@ -231,7 +231,11 @@ astro 7.4.13 (يتطلب Node ‎>=22.23.4) · next 16.4.6 · vite 8.3.8 · tail
 | الرجوع الفوري | ذاكرة الرجوع والتقدّم (bfcache) تعيد الصفحة السابقة فورًا من الذاكرة. "Never use the unload event". | `web.dev/articles/bfcache` (2026-10-16) |
 | ما يُحسب في INP | النقر واللمس ولوحة المفاتيح. التمرير والتحويم لا يُحسبان. جيد: 200 مللي ثانية أو أقل عند الشريحة 75. | `web.dev/articles/inp` (2025-09-02) |
 
-**لم أتحقق من:** أن `env(safe-area-inset-*)` يحتاج `viewport-fit=cover` (لم أجده في الصفحة التي فتحتها).
+**`viewport-fit=cover` والحواف الآمنة** (أُضيف في الجولة الرابعة):
+- `webkit.org/blog/7929/designing-websites-for-iphone-x/` (22 سبتمبر 2017): "The default value of viewport-fit is auto, which results in the automatic insetting behavior". لمدّ الصفحة على كامل الشاشة: `viewport-fit=cover`، ثم تُبعَد العناصر المهمة بـ`env(safe-area-inset-*)`.
+- MDN، صفحة وسم `viewport`: "cover: The viewport is scaled to fill the device display. It's highly recommended to use the safe area inset variables".
+- ⇐ نكتب الاثنين معًا: `viewport-fit=cover` في الوسم و`env(safe-area-inset-bottom)` على الشريط السفلي.
+- **لم أجد** نصًّا يقول صراحةً إن قيم `env()` تساوي صفرًا بلا `cover`. يُفحص على آيفون حقيقي.
 
 ## 17) حركة بلا JavaScript، ودعم المتصفحات
 | الميزة | ما هي | الدعم يوم التحقق | المصدر |
@@ -242,6 +246,8 @@ astro 7.4.13 (يتطلب Node ‎>=22.23.4) · next 16.4.6 · vite 8.3.8 · tail
 «Newly available» تعني أن الأجهزة غير المحدَّثة لا تدعمها. **القاعدة:** المحتوى ظاهر افتراضًا، والحركة تحسين لمن يدعمها. لا يُخفى شيء بانتظار حركة.
 لم أستخرج جدول الإصدارات لكل متصفح؛ الحكم من تصنيف MDN فقط.
 
+**احترام إعداد تقليل الحركة** (أُضيف في الجولة الرابعة) — MDN، `prefers-reduced-motion`: مصنّفة «Baseline — Widely available»، "available across browsers since January 2020". القيمة `reduce`: "a user has enabled the setting on their device for reduced motion". ⇐ كل حركة تُكتب داخل `@media (prefers-reduced-motion: no-preference)`.
+
 ## 18) وعود لا يملكها أحد
 - "No one can guarantee a #1 ranking on Google." — `…/fundamentals/do-i-need-seo` (2026-06-05).
 - أثر أي تغيير: "Some changes might take effect in a few hours, others could take several months." والتقييم بعد «a few weeks». — `…/fundamentals/seo-starter-guide` (2025-12-10).
@@ -249,17 +255,37 @@ astro 7.4.13 (يتطلب Node ‎>=22.23.4) · next 16.4.6 · vite 8.3.8 · tail
 - IndexNow: القائمة في `indexnow.org/faq` تذكر Amazon و Bing و Naver و Seznam و Yandex و Yep. **جوجل ليست فيها.**
 
 ## 19) حقائق عن Next.js (للمقارنة فقط)
+- `nextjs.org/docs/app/api-reference/file-conventions/proxy` (2026-11-18): "The middleware file convention is deprecated and has been renamed to proxy.".
 - `nextjs.org/docs/app/api-reference/components/image` (2026-11-18): "Starting with Next.js 16, the priority property is deprecated. Use preload".
 - `nextjs.org/blog/CVE-2025-66478`: ثغرة في بروتوكول RSC، درجتها CVSS 10.0. تصيب App Router على 15.x و 16.x و 14.3.0-canary.77 فما بعد. لا تصيب 13.x ولا 14.x المستقرة ولا Pages Router. أُصلحت في 15.0.5 · 15.1.9 · 15.2.6 · 15.3.6 · 15.4.8 · 15.5.7 · 16.0.7.
 
+## 20) حالات الفهرسة في Search Console
+المصدر: `support.google.com/webmasters/answer/7440203` («Page indexing report»). فُتحت يوم 2026-11-21 بلا `?hl=en`؛ لا تاريخ تحديث ظاهر في النص.
+| الحالة | نص جوجل |
+|---|---|
+| Discovered – currently not indexed | "The page was found by Google, but not crawled yet. Typically, Google wanted to crawl the URL but this was expected to overload the site; therefore Google rescheduled the crawl. This is why the last crawl date is empty on the report." |
+| Crawled – currently not indexed | "The page was crawled by Google but not indexed. Google doesn't index all pages across the web, so this is a common message for many sites and doesn't necessarily indicate an issue that needs attention." |
+| Duplicate without user-selected canonical | الصفحة نسخة من أخرى ولم تُحدِّد رابطًا أساسيًّا؛ جوجل اختارت الأخرى ولن تعرض هذه. |
+| Duplicate, Google chose different canonical than user | حدّدتَ رابطًا أساسيًّا وجوجل رأت غيره أصلح، ففهرست ما اختارته. |
+| Soft 404 | صفحة تقول «غير موجود» لكنها تردّ 200. المطلوب ردّ 404 حقيقي. |
+
+**الفرق عن مهارة المالك:** مهارته تقول إن «Crawled» حكمٌ على جودة المحتوى، وإن «Discovered» سببها أولوية منخفضة. نص جوجل أهدأ: الأولى «شائعة ولا تعني بالضرورة مشكلة»، والثانية سببها المذكور تجنّب إثقال الموقع. تفسير المالك خبرة ميدانية، لا نص رسمي.
+
+## 21) ترخيص الخطوط المفتوحة على الويب (SIL OFL 1.1)
+المصدر: `openfontlicense.org/ofl-faq/` (آخر تحديث 9 نوفمبر 2026). التطبيق على خطوطنا: [arabic-fonts.md](arabic-fonts.md).
+- استعمال الخط بـ`@font-face` واستضافته مع ملفات الموقع مسموحان (2.1).
+- WOFF2 بلا تغيير في بيانات الخط ليس تعديلًا (2.2.1).
+- "Removing any parts of the font when delivering a webfont to a browser, including unused glyphs and smart font code, is considered modification. This is permitted by the OFL but would not normally allow the use of RFNs." (2.6)
+- الاسم المحجوز (Reserved Font Name) لا تحمله نسخة معدّلة إلا باتفاق مكتوب مع صاحب الحقوق (5.8).
+**لم أقرأ** الورقة المفصّلة «Webfonts and Reserved Font Names».
+
 ## ما لم أتحقق منه (لا تعتمد عليه من هذا الملف)
 - **المعايير البصرية والتصميمية**: لا يوجد لها معيار رسمي. ما جُمع عنها بحث وقياس في [luxury-ux-research.md](luxury-ux-research.md)، وهو اتجاه لا معيار.
-- **اختيار الخطوط العربية وتراخيصها ومقروئيتها**: لم يُبحث. (قواعد التحميل في البند 10.)
+- **الخطوط العربية**: الوزن والترخيص والتغطية قيست لـ12 عائلة ([arabic-fonts.md](arabic-fonts.md)). **المقروئية** لم تُختبر مع أشخاص، والشكل على جوال حقيقي لم يُرَ.
 - **قانون حماية البيانات وإشعار الكوكيز** في بلد النشاط: لم يُبحث.
 - **Lindgaard وآخرون 2006** («50 مللي ثانية») و **Pracejus وآخرون 2006** (الفراغ الأبيض): تأكدتُ من وجود المرجعين بالبحث فقط؛ لم أقرأهما.
 - **دعم المتصفحات لميزات CSS الحديثة**: بُحث لميزتين فقط (البند 17)؛ جدول الإصدارات لكل متصفح لم يُستخرج.
 - **Google Business Profile**: القواعد في البند 15 فُتحت من المصدر. طريقة التوثيق وأهلية نشاط بلا سجل تجاري: لم تُبحثا.
 - **تاريخ إلغاء HowTo**: لاحظتُ أنه غير موجود في قائمة ميزات البيانات المهيكلة الحالية؛ التاريخ (سبتمبر 2023) من مصادر غير رسمية.
 - **توثيق إصدارات الأدوات في البند 8**.
-- **حالتا Search Console** «Discovered – currently not indexed» و«Crawled – currently not indexed»: تعذّر جلب صفحة الدعم؛ تعريفهما في المهارات من خبرة المالك الميدانية.
 - **أحجام البحث** لكل عبارة: لا مصدر عندي. الإكمال التلقائي يثبت أن العبارة تُكتب، لا كم مرة.

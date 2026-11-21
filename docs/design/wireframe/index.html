@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>مخطط هيكلي للصفحة الرئيسية — طيف الضيافة (ليس تصميمًا)</title>
+<style>
+/* مخطط رمادي: يبيّن الترتيب والمقاسات فقط. لا ألوان ولا خطوط ولا صور معتمدة. */
+:root{--ink:#1c1c1c;--mute:#5a5a5a;--line:#bdbdbd;--box:#e4e4e4;--bg:#f6f6f6;--pad:20px;--bar:64px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:1.0625rem/1.8 system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;padding-block-end:calc(var(--bar) + env(safe-area-inset-bottom,0px))}
+a{color:inherit}
+.wrap{max-inline-size:1120px;margin-inline:auto;padding-inline:var(--pad)}
+.note{font-size:.8125rem;line-height:1.6;color:var(--mute);border:1px dashed var(--line);padding:8px 10px;margin-block:10px 0;background:#fff}
+.ph{background:var(--box);border:1px solid var(--line);display:grid;place-items:center;text-align:center;color:var(--mute);font-size:.875rem;line-height:1.5;padding:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-block-size:52px;padding-inline:22px;border:2px solid var(--ink);background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:1rem;border-radius:6px}
+.btn.alt{background:transparent;color:var(--ink)}
+.more{display:inline-flex;align-items:center;gap:8px;min-block-size:48px;font-weight:700;text-underline-offset:6px}
+.more::after{content:"←"}
+header.top{display:flex;align-items:center;justify-content:space-between;block-size:56px;padding-inline:var(--pad);background:#fff;border-block-end:1px solid var(--line)}
+header.top .logo{font-weight:700}
+header.top .menu{inline-size:48px;block-size:48px;border:1px solid var(--line);background:#fff;border-radius:6px;font-size:1.25rem}
+/* الأصل (لكل متصفح): الشريط السفلي ظاهر دائمًا وهو يحمل الزرّين، فلا يتكرران في الواجهة. */
+.hero{min-block-size:calc(100vh - 56px - 132px);min-block-size:calc(100svh - 56px - 132px);display:grid;grid-template-rows:1fr auto;background:var(--box);border-block-end:1px solid var(--line)}
+.hero .ph{border:0;background:transparent}
+.hero .txt{background:#fff;padding:18px var(--pad) 20px;border-block-start:1px solid var(--line)}
+.hero h1{margin:0;font-size:2.5rem;line-height:1.25}
+.hero p{margin:4px 0 14px;color:var(--mute)}
+.cta{display:none;grid-template-columns:1fr 1fr;gap:10px}
+section{padding-block:36px;border-block-end:1px solid var(--line)}
+section>.wrap>.k{font-size:.8125rem;color:var(--mute);margin:0}
+h2{margin:0 0 4px;font-size:1.625rem;line-height:1.35}
+.lead{margin:0 0 16px;color:var(--mute)}
+.grid{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.grid.one{grid-template-columns:1fr}
+.card{background:#fff;border:1px solid var(--line)}
+.card .ph{aspect-ratio:4/3;border:0;border-block-end:1px solid var(--line)}
+.card b{display:block;padding:10px 12px 0}
+.card span{display:block;padding:0 12px 12px;color:var(--mute);font-size:.9375rem;line-height:1.6}
+.big .ph{aspect-ratio:4/5}
+ol.steps{margin:0;padding:0;list-style:none;display:grid;gap:10px;counter-reset:s}
+ol.steps li{counter-increment:s;background:#fff;border:1px solid var(--line);padding:12px 14px}
+ol.steps li::before{content:counter(s) " · ";font-weight:700}
+form{display:grid;gap:12px;background:#fff;border:1px solid var(--line);padding:16px}
+label{display:grid;gap:4px;font-weight:700;font-size:.9375rem}
+select,input{font:inherit;font-size:1rem;min-block-size:52px;padding-inline:12px;border:1px solid var(--ink);border-radius:6px;background:#fff;color:var(--ink);inline-size:100%}
+output{display:block;white-space:pre-wrap;font-size:.9375rem;line-height:1.7;background:var(--bg);border:1px dashed var(--line);padding:10px;min-block-size:48px}
+details{background:#fff;border:1px solid var(--line);margin-block-end:8px}
+summary{min-block-size:52px;display:flex;align-items:center;padding-inline:14px;font-weight:700;cursor:pointer}
+details p{margin:0;padding:0 14px 14px;color:var(--mute)}
+footer{padding-block:28px}
+footer nav{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+footer nav a{min-block-size:48px;display:flex;align-items:center}
+.bar{position:fixed;inset-inline:0;inset-block-end:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:6px var(--pad) calc(6px + env(safe-area-inset-bottom,0px));background:#fff;border-block-start:1px solid var(--line);z-index:5}
+.bar .btn{min-block-size:52px}
+/* الحركة: تحسين لمن يدعمها فقط. بدونها كل شيء ظاهر. */
+@media (prefers-reduced-motion:no-preference){
+  @supports (animation-timeline:view()){
+    section>.wrap{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+    @keyframes rise{from{opacity:.25;transform:translateY(18px)}to{opacity:1;transform:none}}
+    /* تحسين: الزرّان في الواجهة، والشريط السفلي ينزلق بعد تجاوزها. */
+    .hero{min-block-size:calc(100svh - 56px - 72px)}.hero .cta{display:grid}
+    .bar{animation:barin linear both;animation-timeline:scroll(root);animation-range:55svh 80svh}
+    @keyframes barin{from{transform:translateY(110%)}to{transform:none}}
+  }
+}
+@media (min-width:768px){
+  :root{--pad:32px}
+  .grid{grid-template-columns:repeat(4,1fr)}.grid.three{grid-template-columns:repeat(3,1fr)}
+  .hero{grid-template-columns:1fr 1fr;grid-template-rows:1fr}.hero .txt{display:grid;align-content:center;border:0;border-inline-start:1px solid var(--line)}
+  .hero{min-block-size:calc(100svh - 56px - 72px)}.hero h1{font-size:3.5rem}.hero .cta{display:grid;max-inline-size:420px}
+  .bar{display:none}body{padding-block-end:0}
+  form{grid-template-columns:1fr 1fr}form .full{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <span class="logo">[الشعار] طيف الضيافة</span>
+  <button class="menu" type="button" aria-label="القائمة">☰</button>
+</header>
+
+<main>
+<div class="hero" id="top">
+  <div class="ph">[صورة حقيقية واحدة بملء الشاشة:<br>قهوجي يخدم ضيفًا]<br>تُرسل من العميل</div>
+  <div class="txt">
+    <h1>طيف الضيافة</h1>
+    <p>[سطر واحد: الخدمة والمنطقة]</p>
+    <div class="cta"><a class="btn" href="#talab">واتساب</a><a class="btn alt" href="#talab">اتصال</a></div>
+  </div>
+</div>
+
+<section id="s2"><div class="wrap">
+  <p class="k">2 · ماذا تقدّمون؟</p><h2>خدماتنا</h2><p class="lead">[سطر واحد]</p>
+  <div class="grid">
+    <div class="card"><div class="ph">[صورة]</div><b>[خدمة 1]</b><span>[سطر]</span></div>
+    <div class="card"><div class="ph">[صورة]</div><b>[خدمة 2]</b><span>[سطر]</span></div>
+    <div class="card"><div class="ph">[صورة]</div><b>[خدمة 3]</b><span>[سطر]</span></div>
+    <div class="card"><div class="ph">[صورة]</div><b>[خدمة 4]</b><span>[سطر]</span></div>
+  </div>
+  <a class="more" href="#s2">خدمة القهوجيين والصبابين</a>
+</div></section>
+
+<section id="s3"><div class="wrap">
+  <p class="k">3 · ماذا يُقدَّم للضيوف؟</p><h2>المشروبات</h2><p class="lead">[أربعة من قائمة العميل]</p>
+  <div class="grid">
+    <div class="card"><div class="ph">[صورة]</div><b>[مشروب]</b></div><div class="card"><div class="ph">[صورة]</div><b>[مشروب]</b></div>
+    <div class="card"><div class="ph">[صورة]</div><b>[مشروب]</b></div><div class="card"><div class="ph">[صورة]</div><b>[مشروب]</b></div>
+  </div>
+  <a class="more" href="#s3">كل المشروبات</a>
+</div></section>
+
+<section id="s4"><div class="wrap">
+  <p class="k">4 · هل تخدمون مناسبتي؟</p><h2>المناسبات</h2><p class="lead">[الثلاث الأعلى طلبًا عند العميل]</p>
+  <div class="grid three">
+    <div class="card"><div class="ph">[صورة]</div><b>[مناسبة 1]</b></div><div class="card"><div class="ph">[صورة]</div><b>[مناسبة 2]</b></div>
+    <div class="card"><div class="ph">[صورة]</div><b>[مناسبة 3]</b></div>
+  </div>
+  <a class="more" href="#s4">المناسبات التي نخدمها</a>
+</div></section>
+
+<section id="s5"><div class="wrap">
+  <p class="k">5 · أرني شغلكم</p><h2>من أعمالنا</h2><p class="lead">[صور كبيرة من مناسبات فعلية]</p>
+  <div class="grid one big"><div class="card"><div class="ph">[صورة كبيرة]</div></div></div>
+  <div class="grid" style="margin-block-start:12px"><div class="card"><div class="ph">[صورة]</div></div><div class="card"><div class="ph">[صورة]</div></div></div>
+  <a class="more" href="#s5">صور من أعمالنا</a>
+</div></section>
+
+<section id="s6"><div class="wrap">
+  <p class="k">6 · لماذا أنتم؟</p><h2>لماذا طيف الضيافة</h2><p class="lead">[ثلاث حقائق يؤكدها العميل كتابةً. بلا أرقام مخترعة]</p>
+  <ol class="steps"><li>[حقيقة 1]</li><li>[حقيقة 2]</li><li>[حقيقة 3]</li></ol>
+  <a class="more" href="#s6">من نحن</a>
+</div></section>
+
+<section id="s7"><div class="wrap">
+  <p class="k">7 · ماذا يحدث بعد أن أتواصل؟</p><h2>كيف يتم الطلب</h2>
+  <ol class="steps"><li>[ترسل لنا التفاصيل]</li><li>[نرسل لك العرض]</li><li>[نحضر قبل الموعد]</li></ol>
+</div></section>
+
+<section id="s8"><div class="wrap">
+  <p class="k">8 · هل تصلون إليّ؟</p><h2>مناطق الخدمة</h2><p class="lead">الدمام والخبر، ثم [ما يؤكده العميل]</p>
+  <a class="more" href="#s8">مناطق الخدمة</a>
+</div></section>
+
+<section id="talab"><div class="wrap">
+  <p class="k">9 · أريد سعرًا</p><h2>اطلب عرض سعر</h2><p class="lead">أربعة حقول فقط، ثم يفتح واتساب برسالة جاهزة.</p>
+  <form id="q">
+    <label>نوع المناسبة<select name="o" required><option value="">اختر</option><option>[مناسبة 1]</option><option>[مناسبة 2]</option><option>[مناسبة 3]</option></select></label>
+    <label>المدينة<select name="c" required><option value="">اختر</option><option>الدمام</option><option>الخبر</option><option>[مدينة أخرى]</option></select></label>
+    <label>التاريخ<input name="d" type="date" required></label>
+    <label>عدد الضيوف<input name="g" type="number" inputmode="numeric" min="1" autocomplete="off" required></label>
+    <button class="btn full" type="submit">أرسل الطلب على واتساب</button>
+    <output class="full" id="out" aria-live="polite">هنا تظهر الرسالة التي ستُرسل (في المخطط فقط؛ لا رقم واتساب مكتوب).</output>
+  </form>
+</div></section>
+
+<section id="s10"><div class="wrap">
+  <p class="k">10 · عندي سؤال</p><h2>الأسئلة</h2>
+  <details><summary>[سؤال 1]</summary><p>[جواب من العميل]</p></details>
+  <details><summary>[سؤال 2]</summary><p>[جواب من العميل]</p></details>
+  <details><summary>[سؤال 3]</summary><p>[جواب من العميل]</p></details>
+  <details><summary>[سؤال 4]</summary><p>[جواب من العميل]</p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p><b>طيف الضيافة</b></p>
+  <nav aria-label="الصفحات">
+    <a href="#s2">القهوجيين والصبابين</a><a href="#s3">المشروبات</a><a href="#s4">المناسبات</a><a href="#s8">مناطق الخدمة</a>
+    <a href="#s5">من أعمالنا</a><a href="#s6">من نحن</a><a href="#talab">اطلب عرض سعر</a><a href="#top">الخصوصية</a>
+  </nav>
+  <p class="note">مخطط هيكلي رمادي لاعتماد <b>الترتيب</b> فقط. ليس تصميمًا: لا ألوان ولا خطوط ولا صور معتمدة، وكل ما بين [قوسين] ينتظر العميل. الروابط هنا تنقل داخل الصفحة؛ في الموقع تفتح صفحاتها.</p>
+</div></footer>
+
+<div class="bar" role="group" aria-label="تواصل سريع"><a class="btn" href="#talab">واتساب</a><a class="btn alt" href="#talab">اتصال</a></div>
+
+<script>
+// المخطط فقط: يعرض نص الرسالة بدل فتح واتساب، لأن الرقم لا يُكتب في مستودع عام.
+document.getElementById('q').addEventListener('submit', function (e) {
+  e.preventDefault(); var f = new FormData(this);
+  document.getElementById('out').textContent = 'السلام عليكم طيف الضيافة، أبغى عرض سعر:\nالمناسبة: ' + f.get('o') + '\nالمدينة: ' + f.get('c') + '\nالتاريخ: ' + f.get('d') + '\nعدد الضيوف: ' + f.get('g');
+});
+</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 ---
 name: mobile-first
 description: بناء كل صفحة للجوال أولًا وفحصها على ستة مقاسات. استعملها مع كل قالب صفحة وقبل أي «تمّ».
-version: 0.1
+version: 0.2
 status: draft
 ---
 # الجوال أولًا
@@ -26,13 +26,13 @@ status: draft
 ## القواعد
 | القاعدة | المصدر |
 |---|---|
-| `<meta name="viewport" content="width=device-width, initial-scale=1">` بلا منع تكبير | البند 16 |
+| `<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">` بلا منع تكبير | البند 16 |
 | صفر تمرير أفقي عند 320 | WCAG 1.4.10 |
 | النص يكبر إلى 200% بلا فقد: مقاسات بـ`rem`، لا ارتفاعات ثابتة لصناديق النص | WCAG 1.4.4 |
 | لا قفل اتجاه | WCAG 1.3.4 |
 | كل هدف لمس 24×24 على الأقل؛ الأزرار الأساسية نحو 48 | WCAG 2.5.8 و web.dev |
 | ارتفاع الواجهة بـ`svh` لا `vh` | البند 16 |
-| الشريط السفلي يبتعد بـ`env(safe-area-inset-bottom)` | MDN |
+| الشريط السفلي يبتعد بـ`env(safe-area-inset-bottom)`، ومعه `viewport-fit=cover` في الوسم | WebKit و MDN (البند 16) |
 | صورة الواجهة: `<img>` بأبعاد مكتوبة و`fetchpriority="high"`، وباقي الصور `loading="lazy"` | البندان 14 و16 |
 | لا `unload`؛ الرجوع يجب أن يكون فوريًا | البند 16 |
 | حقول الإدخال بخط 16px أو أكبر | **اقتراح، بلا مصدر رسمي مفتوح** (يُقال إن Safari يكبّر الصفحة عند أصغر منه) |
@@ -53,6 +53,7 @@ node scripts/measure/responsive.mjs <مجلد-المخرجات> <الاسم> <ا
 | `actionInFirstScreen` | صحيح |
 | `fixedCoverPct` | أقل من 25% (اقتراح؛ انظر [standards.md](../../docs/research/standards.md) البند 12) |
 
+قياس [المخطط الهيكلي](../../docs/design/wireframe/index.html) (2026-11-21): صفر في `overflowX` و`tapsUnder24` و`tapsUnder48` و`textUnder12` و`fieldsUnder16` على المقاسات الستة ([الأرقام](../../docs/research/data/2026-11-21/wireframe-responsive.json)). أي أن الحدود قابلة للتحقيق كلها، ومنها أن يكون **كل** هدف لمس 48 أو أكبر.
 قياس مرجعي على محرّك المالك كما هو (2026-11-21): لا فائض أفقي في الستة، لا هدف تحت 24، و22 من 46 هدفًا تحت 48، أصغر خط 14px، العناصر الثابتة 10–23% من الشاشة.
 
 ## فحص بالعين وباليد
@@ -61,4 +62,4 @@ node scripts/measure/responsive.mjs <مجلد-المخرجات> <الاسم> <ا
 - تدوير الجهاز، وتكبير خط النظام، وفتح لوحة المفاتيح على نموذج الطلب.
 
 ## لم يُتحقق منه
-هل يحتاج `env(safe-area-inset-*)` إلى `viewport-fit=cover` · سلوك Safari مع الحقول الصغيرة · Samsung Internet و UC (نحو 5% معًا).
+قيمة `env(safe-area-inset-bottom)` الفعلية على آيفون (لا تُرى في Chromium) · سلوك Safari مع الحقول الصغيرة · Samsung Internet و UC (نحو 5% معًا).
