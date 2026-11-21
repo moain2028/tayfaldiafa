@@ -54,6 +54,7 @@ node scripts/measure/lh-summary.mjs <مجلد-المخرجات>/lh summary.json
 node scripts/measure/responsive.mjs <مجلد-المخرجات> <الاسم> <الرابط> [<الاسم> <الرابط> …]
 ```
 ستة مقاسات: 320×568 · 360×800 · 390×844 · 414×896 · 768×1024 · 1280×800. Chromium فقط.
+مقاسات أخرى (هاتف مطوي، لوحي، شاشة عريضة): `RESP_WIDTHS="344x882,820x1180,1440x900,1920x1080" node scripts/measure/responsive.mjs …`. هي محاكاة مقاس، لا جهاز حقيقي.
 يخرج `<مجلد-المخرجات>/shots/<الاسم>-<العرض>.png` و `responsive-<الاسم>.json`، وفيه لكل عرض:
 `overflowX` · `taps` و`tapsUnder24` و`tapsUnder48` · `minFontPx` و`textUnder12` · `fieldsUnder16` · `h1Px` و`h1Lines` · `actionInFirstScreen` · `fixedCoverPct` · `screens`.
 الحدود في [skills/mobile-first](../../skills/mobile-first/SKILL.md).

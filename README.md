@@ -27,7 +27,8 @@
 | [docs/research/search-intent-east.md](docs/research/search-intent-east.md) | ماذا يكتب الناس في جوجل في الشرقية، ومن يظهر لهم؟ |
 | [docs/design/site-structure.md](docs/design/site-structure.md) | ما الصفحات، وما ترتيب الرئيسية على الجوال؟ |
 | [site/](site/README.md) | كيف يُبنى الموقع ويُفحص، وكيف تُضاف صفحة أو تُبدَّل صورة؟ |
-| [docs/design/preview/](docs/design/preview/home-390.jpg) | كيف تبدو أول شاشة الآن؟ |
+| [docs/design/preview/](docs/design/preview/home-390-v2.jpg) | كيف تبدو أول شاشة الآن؟ (التصميم الثاني، ينتظر حكم المالك) |
+| [docs/research/luxury-craft-study.md](docs/research/luxury-craft-study.md) | لماذا سقط التصميم الأول، وماذا في موقعَي المالك؟ |
 | [docs/design/wireframe/](docs/design/wireframe/index.html) | كيف يبدو الترتيب على جوال؟ (مخطط رمادي، ليس تصميمًا) |
 | [docs/research/arabic-fonts.md](docs/research/arabic-fonts.md) | أي خط؟ الوزن والترخيص والعيّنة |
 | [docs/research/owner-skill-review.md](docs/research/owner-skill-review.md) | ما الذي أُخذ من مهارة المالك وما صُحّح؟ |

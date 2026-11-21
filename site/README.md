@@ -1,6 +1,6 @@
 # site — موقع «طيف الضيافة»
 
-مولّد ثابت بلا اعتماديات: Node 20 أو أحدث فقط. القرار ولماذا: [ADR-0002](../docs/adr/0002-tech-stack.md). الألوان والخطوط والحركة: [ADR-0003](../docs/adr/0003-visual-direction.md).
+مولّد ثابت بلا اعتماديات: Node 20 أو أحدث فقط. القرار ولماذا: [ADR-0002](../docs/adr/0002-tech-stack.md). الألوان والخطوط والحركة: [ADR-0004](../docs/adr/0004-visual-direction-v2.md) (الأول، [ADR-0003](../docs/adr/0003-visual-direction.md)، رفضه المالك).
 
 **الحالة (2026-11-21): بناء تجريبي.** النصوص مسودة، والصور مؤقتة، ولا رقم هاتف. بناء النشر يرفض العمل حتى تُحلّ الثلاثة.
 
@@ -33,7 +33,7 @@ node site/scripts/check.mjs --prod
 | `src/app.js` | النموذج يبني رسالة واتساب، وإغلاق القائمة. لا شيء غيرهما |
 | `photos/photos.json` | قائمة الصور: المفتاح، الملف، النص البديل، المصدر، نقطة التركيز |
 | `photos/src/` | الصور الأصلية · `public/img/` المخرجات بمقاسات AVIF و WebP · `photos/manifest.json` يكتبه `images.py` |
-| `public/fonts/` | خطّان مقتطعان مع نص رخصتيهما |
+| `public/fonts/` | ثلاثة خطوط مقتطعة (Amiri للعناوين، El Messiri للأزرار، Almarai للنص) مع نصوص رخصها |
 | `scripts/check.mjs` | البوابة |
 | `scripts/images.py` | معالجة الصور (Pillow 11.3 أو أحدث بدعم AVIF و WebP) |
 

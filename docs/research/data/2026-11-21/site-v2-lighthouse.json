@@ -1,0 +1,50 @@
+{
+ "meta": {
+  "lighthouse": "13.6.0",
+  "formFactor": "mobile",
+  "note": "design v2, home only, local preview build, lab"
+ },
+ "runs": [
+  {
+   "perf": 92,
+   "a11y": 100,
+   "bp": 100,
+   "lcp": 744,
+   "tbt": 345,
+   "cls": 0.0,
+   "kb": 360,
+   "bench": 1245
+  },
+  {
+   "perf": 88,
+   "a11y": 100,
+   "bp": 100,
+   "lcp": 736,
+   "tbt": 485,
+   "cls": 0.002,
+   "kb": 360,
+   "bench": 1275
+  },
+  {
+   "perf": 87,
+   "a11y": 100,
+   "bp": 100,
+   "lcp": 782,
+   "tbt": 519,
+   "cls": 0.001,
+   "kb": 360,
+   "bench": 1172.5
+  }
+ ],
+ "median": {
+  "perf": 88,
+  "a11y": 100,
+  "bp": 100,
+  "lcp": 744,
+  "tbt": 485,
+  "cls": 0.001,
+  "kb": 360,
+  "bench": 1245
+ },
+ "failing": []
+}

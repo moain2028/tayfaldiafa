@@ -35,7 +35,14 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 - `docs/design/preview/home-390.jpg`: لقطة أول شاشة.
 - `docs/research/data/2026-11-21/`: ‏`suggest-round5.json` و`site-lighthouse.json` و`site-responsive.json`.
 
+- `docs/adr/0004-visual-direction-v2.md`: الاتجاه البصري الثاني (مقترح).
+- `docs/research/luxury-craft-study.md`: لماذا سقط التصميم الأول، ومقارنة معدودة بموقعَي المالك.
+- `site/public/fonts/amiri-700-subset.woff2` ونص رخصته. `docs/design/preview/home-390-v2.jpg` و`cards-390-v2.jpg`. بيانات: `site-v2-lighthouse.json` و`site-v2-responsive.json`.
+
 ### Changed
+- `site/src/styles.css`: **أُعيدت كتابتها كلها** (داكن، موسَّط، كبسولات، زجاج، ظلال متراكبة، حركة أغنى). `site/build.mjs`: قالب الواجهة والشعار. `site/content/home.json`: حقول الواجهة.
+- `docs/adr/0003-visual-direction.md`: حلّ محلّه 0004 بعد رفض المالك.
+- `scripts/measure/responsive.mjs`: ‏`RESP_WIDTHS` لمقاسات إضافية.
 - `docs/adr/0002-tech-stack.md`: **مقبول** — مولّد ثابت خاص بالمشروع، مع الدليل المقيس.
 - `STATUS.md` و`README.md` و`AGENTS.md` (أوامر البناء، قاعدة رقم الهاتف) و`docs/FACTS.md` و`docs/design/site-structure.md` و`docs/design/architecture.md` و`docs/research/search-intent-east.md`: حُدّثت بما في الجولة الخامسة.
 - `skills/`: ‏quality-gates و motion و mobile-first إلى 0.3 بما تعلّمناه من أول بناء.

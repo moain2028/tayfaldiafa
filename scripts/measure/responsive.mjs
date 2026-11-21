@@ -3,7 +3,8 @@
 // Engine is Chromium only. It emulates touch and screen size; it is NOT Safari/WebKit and not a real phone.
 import { chromium } from 'playwright';
 import { writeFileSync, mkdirSync } from 'node:fs';
-const WIDTHS = [[320, 568], [360, 800], [390, 844], [414, 896], [768, 1024], [1280, 800]];
+// RESP_WIDTHS="344x882,820x1180" overrides the six default sizes (foldables, tablets, large desktops).
+const WIDTHS = process.env.RESP_WIDTHS ? process.env.RESP_WIDTHS.split(',').map((s) => s.split('x').map(Number)) : [[320, 568], [360, 800], [390, 844], [414, 896], [768, 1024], [1280, 800]];
 const UA = 'Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36';
 const [outDir, ...args] = process.argv.slice(2); mkdirSync(`${outDir}/shots`, { recursive: true });
 const browser = await chromium.launch({ args: ['--no-sandbox', '--disable-dev-shm-usage'] }); const out = [];

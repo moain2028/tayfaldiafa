@@ -83,6 +83,7 @@ const waHref = (extra) => `https://wa.me/${phone}?text=${encodeURIComponent(waTe
 // ويفتحان نموذج الطلب الذي يحمل تنبيهًا ظاهرًا. لا يخرج رابط wa.me ولا tel بلا رقم.
 const btnWa = (extra, cls = '', q = url('talab')) => `<a class="btn ${cls}" href="${phone ? waHref(extra) : q}"${phone ? ' rel="noopener"' : ''}>${I.wa}واتساب</a>`;
 const btnTel = (cls = 'ghost', q = url('talab')) => `<a class="btn ${cls}" href="${phone ? `tel:+${phone}` : q}">${I.tel}اتصال</a>`;
+const logo = () => `<a class="logo" href="/" aria-label="طيف الضيافة، الصفحة الرئيسية"><span class="medal">${I.mark}</span><span class="nm"><b>طيف الضيافة</b><i lang="en" dir="ltr" aria-hidden="true">${esc(home.hero.latin)}</i></span></a>`;
 const more = (slug) => `<a class="more" href="${url(slug)}">${esc(label(slug))}${I.arrow}</a>`;
 const mores = (list) => { const l = list.filter(live); return l.length ? `<p class="mores">${l.map(more).join('')}</p>` : ''; };
 const head = (k, h2, lead, cls = '') => `<div class="head rv ${cls}"><div>${k ? `<p class="k">${esc(k)}</p>` : ''}<h2>${esc(h2)}</h2></div>${lead ? `<p class="lead">${esc(lead)}</p>` : ''}</div>`;
@@ -93,7 +94,7 @@ function header(current) {
   const cta = `<a class="btn" href="${url('talab')}">اطلب عرض سعر</a>`;
   return `<a class="skip" href="#main">انتقل إلى المحتوى</a><div class="prog" aria-hidden="true"></div>
 <header class="top"><div class="wrap">
-<a class="logo" href="/" aria-label="طيف الضيافة، الصفحة الرئيسية">${I.mark}<span>طيف الضيافة</span></a>
+${logo()}
 <nav class="nav-wide" aria-label="الصفحات الرئيسية">${links}${cta}</nav>
 <details class="menu"><summary aria-label="القائمة">${I.menu}</summary><nav class="panel" aria-label="القائمة">${links.replace(/<\/a>/g, `${I.arrow}</a>`)}${cta}</nav></details>
 </div></header>`;
@@ -103,7 +104,7 @@ function footer() {
   const li = (s) => `<li><a href="${url(s)}">${esc(cfg.pages[s].label)}</a></li>`;
   const site = ['mashrubat', 'munasabat', 'manatiq-alkhidma', 'aamalna', 'man-nahnu', 'talab', 'khususiya'].filter(live);
   return `<footer class="foot"><div class="wrap"><div class="cols">
-<div><a class="logo" href="/" aria-label="طيف الضيافة، الصفحة الرئيسية">${I.mark}<span>طيف الضيافة</span></a><p>${esc(home.hero.lead)}</p></div>
+<div>${logo()}<p>${esc(home.hero.lead)}</p></div>
 <div><h2>الخدمات</h2><ul>${cfg.footerServices.filter(live).map(li).join('')}</ul></div>
 <div><h2>المدن</h2><ul>${cfg.cities.filter(live).map(li).join('')}</ul></div>
 <div><h2>الموقع</h2><ul>${site.map(li).join('')}</ul></div>
@@ -146,7 +147,7 @@ function doc({ path, title, desc, body: raw, cls = '', ogImg, ld = [], noindex =
 <meta name="description" content="${esc(desc)}">
 ${!PROD || noindex ? '<meta name="robots" content="noindex, nofollow">\n' : ''}${noindex ? '' : `<link rel="canonical" href="${abs(path)}">\n`}<meta name="theme-color" content="#120e0a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/fonts/elmessiri-subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/amiri-700-subset.woff2" as="font" type="font/woff2" crossorigin>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(cfg.name)}">
 <meta property="og:locale" content="${esc(cfg.locale)}">
@@ -205,13 +206,23 @@ function renderHome() {
   const numbered = (items, cls) => `<ol class="${cls} rv2">${items.map((it, i) => `<li><span class="num" aria-hidden="true">${arNum(i + 1)}</span><h3>${esc(it.t)}</h3><p>${esc(it.d)}</p></li>`).join('')}</ol>`;
   const body = `<div class="hero" id="top">
 <div class="hero__img">${pic(H.hero, S.hero, { eager: true })}</div>
-<div class="hero__txt"><p class="k">${esc(h.hero.kicker)}</p><h1>${esc(h.hero.h1)}</h1><p class="lead">${esc(h.hero.lead)}</p>
-<div class="cta">${btnWa('', '', '#talab')}${btnTel('ghost', '#talab')}</div></div>
+<div class="hero__txt">
+<div class="glass">
+<p class="eyebrow" lang="en" dir="ltr" aria-hidden="true">${esc(h.hero.eyebrow)}</p>
+<h1>${esc(h.hero.h1)}</h1>
+<p class="latin" lang="en" dir="ltr" aria-hidden="true">${esc(h.hero.latin)}</p>
+<p class="tag">${esc(h.hero.kicker)}</p>
+<p class="lead">${esc(h.hero.lead)}</p>
+<ul class="chips">${h.hero.chips.map((c) => `<li>${esc(c)}</li>`).join('')}</ul>
+</div>
+<div class="cta">${btnWa('', '', '#talab')}${btnTel('ghost', '#talab')}</div>
+<ul class="trio">${h.hero.trio.map((t) => `<li><b>${esc(t.t)}</b><span>${esc(t.d)}</span></li>`).join('')}</ul>
+</div>
 </div>
 
 <section class="sec" id="khadamat"><div class="wrap">
 ${head(K.services, h.services.h2, h.services.lead, 'split')}
-<div class="rail" tabindex="0" role="region" aria-label="الخدمات">${h.services.items.map((it, i) => card(it, H.services.photos[i], 'r45', S.rail)).join('')}</div>
+<div class="rail rv2" tabindex="0" role="region" aria-label="الخدمات">${h.services.items.map((it, i) => card(it, H.services.photos[i], 'r45', S.rail)).join('')}</div>
 ${mores(H.services.more)}
 </div></section>
 
@@ -223,7 +234,7 @@ ${mores(H.drinks.more)}
 
 <section class="sec sand" id="munasabat"><div class="wrap">
 ${head(K.occasions, h.occasions.h2, h.occasions.lead, 'split')}
-<div class="rail" tabindex="0" role="region" aria-label="المناسبات">${h.occasions.items.map((it, i) => card(it, H.occasions.photos[i], 'r43', S.rail)).join('')}</div>
+<div class="rail rv2" tabindex="0" role="region" aria-label="المناسبات">${h.occasions.items.map((it, i) => card(it, H.occasions.photos[i], 'r43', S.rail)).join('')}</div>
 ${mores(H.occasions.more)}
 </div></section>
 
