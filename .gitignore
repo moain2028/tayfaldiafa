@@ -17,3 +17,6 @@ test-results/
 .lighthouseci/
 .refs/
 .tools/
+
+# site: private build inputs (phone number never enters this public repo)
+site/.private.json

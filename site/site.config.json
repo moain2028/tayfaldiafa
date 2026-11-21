@@ -1,0 +1,44 @@
+{
+ "name": "طيف الضيافة",
+ "baseUrl": "https://tayfaldiafa.com",
+ "lang": "ar",
+ "locale": "ar_SA",
+ "serviceType": "قهوجيين وصبابين للمناسبات",
+ "areaServed": ["الدمام", "الخبر", "الظهران", "القطيف", "الجبيل", "الأحساء"],
+ "nav": ["qahwajiin-sabbabin", "mashrubat", "munasabat", "manatiq-alkhidma", "aamalna", "man-nahnu"],
+ "footerServices": ["qahwajiin-sabbabin", "qahwajiat-sabbabat", "qahwaji-zawajat", "diyafa-shatwiya"],
+ "cities": ["qahwajiin-dammam", "qahwajiin-khobar", "qahwajiin-dhahran", "qahwajiin-qatif", "qahwajiin-jubail", "qahwajiin-ahsa"],
+ "form": {
+  "occasions": ["زواج", "مناسبة في البيت", "استقبال أو لقاء عمل", "جلسة شتوية أو مخيم", "مناسبة أخرى"],
+  "cities": ["الدمام", "الخبر", "الظهران", "القطيف", "الجبيل", "الأحساء", "مدينة أخرى في الشرقية"]
+ },
+ "home": {
+  "hero": "host-pour",
+  "kickers": {"services": "الخدمة", "drinks": "المشروبات", "occasions": "المناسبات", "works": "من أعمالنا", "why": "لماذا طيف الضيافة", "how": "طريقة الطلب", "areas": "مناطق الخدمة", "quote": "عرض السعر", "faq": "أسئلة"},
+  "services": {"photos": ["elder-pour", "hall", "buffet"], "more": ["qahwajiin-sabbabin", "qahwajiat-sabbabat"]},
+  "drinks": {"photos": ["pour-close", "tea", "mint-tea", "night-dallahs"], "more": ["mashrubat", "diyafa-shatwiya"]},
+  "occasions": {"photos": ["team-row", "majlis-lamp", "lounge"], "more": ["munasabat", "qahwaji-zawajat"]},
+  "works": {"photos": ["flowers", "dallahs-row", "set"], "more": ["aamalna"]},
+  "why": {"more": ["man-nahnu"]},
+  "areas": {"more": ["manatiq-alkhidma"]}
+ },
+ "pages": {
+  "qahwajiin-sabbabin": {"label": "القهوجيين والصبابين", "link": "خدمة القهوجيين والصبابين", "type": "service", "hero": "elder-pour", "aside": "host-pour", "related": ["qahwajiat-sabbabat", "qahwaji-zawajat", "mashrubat"]},
+  "qahwajiat-sabbabat": {"label": "قهوجيات وصبابات", "link": "قهوجيات وصبابات لقسم النساء", "type": "service", "hero": "flowers", "aside": "majlis-tall", "related": ["qahwajiin-sabbabin", "qahwaji-zawajat", "munasabat"], "hold": "FACTS سؤال 2: العميل لم يؤكد وجود طاقم نسائي"},
+  "qahwaji-zawajat": {"label": "قهوجي زواجات", "link": "قهوجي زواجات", "type": "service", "hero": "team-row", "aside": "hall", "related": ["qahwajiin-sabbabin", "qahwajiat-sabbabat", "munasabat"]},
+  "diyafa-shatwiya": {"label": "ضيافة شتوية", "link": "ضيافة الشتاء للبر والمخيمات", "type": "service", "hero": "tent", "aside": "night-dallahs", "related": ["mashrubat", "qahwajiin-sabbabin", "manatiq-alkhidma"]},
+  "qahwajiin-dammam": {"label": "قهوجيين الدمام", "city": "الدمام", "type": "city", "hero": "buffet", "aside": "set", "related": ["qahwajiin-khobar", "qahwajiin-sabbabin", "qahwaji-zawajat"]},
+  "qahwajiin-khobar": {"label": "قهوجيين الخبر", "city": "الخبر", "type": "city", "hero": "lounge", "aside": "flowers", "related": ["qahwajiin-dammam", "qahwajiin-dhahran", "qahwajiat-sabbabat"]},
+  "qahwajiin-dhahran": {"label": "قهوجي الظهران", "city": "الظهران", "type": "city", "hero": "dallahs-row", "aside": "lounge", "related": ["qahwajiin-khobar", "qahwajiin-dammam", "munasabat"]},
+  "qahwajiin-qatif": {"label": "قهوجي القطيف", "city": "القطيف", "type": "city", "hero": "majlis-lamp", "aside": "incense", "related": ["qahwajiin-dammam", "qahwajiin-jubail", "diyafa-shatwiya"]},
+  "qahwajiin-jubail": {"label": "قهوجيين الجبيل", "city": "الجبيل", "type": "city", "hero": "table-dallah", "aside": "dallahs-row", "related": ["qahwajiin-qatif", "qahwajiin-dammam", "munasabat"]},
+  "qahwajiin-ahsa": {"label": "قهوجيين الأحساء", "city": "الأحساء", "type": "city", "hero": "three-finjans", "aside": "dates", "related": ["diyafa-shatwiya", "qahwajiin-dammam", "mashrubat"]},
+  "mashrubat": {"label": "المشروبات", "link": "كل المشروبات", "type": "page", "hero": "pour-close", "cardPhotos": ["three-finjans", "tea", "mint-tea", "night-dallahs"], "related": ["diyafa-shatwiya", "qahwajiin-sabbabin", "munasabat"]},
+  "munasabat": {"label": "المناسبات", "link": "المناسبات التي نخدمها", "type": "page", "hero": "hall", "aside": "majlis-lamp", "related": ["qahwaji-zawajat", "diyafa-shatwiya", "qahwajiin-sabbabin"]},
+  "manatiq-alkhidma": {"label": "مناطق الخدمة", "link": "مناطق الخدمة", "type": "areas", "hero": "night-dallahs", "related": ["qahwajiin-sabbabin", "munasabat"]},
+  "aamalna": {"label": "من أعمالنا", "link": "صور من أعمالنا", "type": "gallery", "hero": "set", "gallery": ["flowers", "dallahs-row", "buffet", "team-row", "tent", "majlis-tall", "three-finjans", "incense"], "related": ["qahwajiin-sabbabin", "munasabat", "man-nahnu"], "hold": "FACTS 9: صور العميل لم تصل؛ الصور الحالية مؤقتة وليست من أعماله"},
+  "man-nahnu": {"label": "من نحن", "link": "من نحن", "type": "page", "hero": "incense", "aside": "elder-pour", "related": ["qahwajiin-sabbabin", "aamalna", "manatiq-alkhidma"]},
+  "talab": {"label": "اطلب عرض سعر", "link": "اطلب عرض سعر", "type": "quote", "hero": "dallah-tall", "related": ["mashrubat", "manatiq-alkhidma"]},
+  "khususiya": {"label": "الخصوصية", "link": "سياسة الخصوصية", "type": "legal", "related": ["talab"]}
+ }
+}
