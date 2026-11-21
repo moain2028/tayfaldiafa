@@ -238,6 +238,8 @@ select:focus,input:focus{outline:2px solid var(--goldink);outline-offset:1px;bor
     /* المدى بطول ثابت لا بنسبة: الصندوق الطويل لا يبقى نصف شفاف طوال شاشة كاملة من التمرير */
     .rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0 entry 150px}
     .rv2{animation:rise linear both;animation-timeline:view();animation-range:entry 30px entry 200px}
+    /* القسم الذي يطلّ طرفه أسفل أول شاشة يبقى واضحًا: لا ظهور تدريجي عليه */
+    .hero+.sec .rv,.hero+.sec .rv2{animation:none}
     .sec .k::before{animation:draw linear both;animation-timeline:view();animation-range:entry 0% cover 28%}
     @keyframes draw{from{transform:scaleX(0)}to{transform:none}}
     .zoom img{animation:zoom linear both;animation-timeline:view();animation-range:entry 0% cover 55%}
@@ -291,9 +293,9 @@ select:focus,input:focus{outline:2px solid var(--goldink);outline-offset:1px;bor
   .works{grid-template-columns:1.6fr 1fr;grid-template-rows:1fr 1fr;gap:20px}
   .works>:first-child{grid-column:1;grid-row:1/-1}
   .works .ph{aspect-ratio:auto;block-size:100%;min-block-size:240px}
-  .gallery{grid-template-columns:repeat(3,1fr);gap:20px}
-  .gallery>:nth-child(3n+1){grid-column:auto}.gallery>:nth-child(4n+1){grid-column:span 2}
-  .gallery>:nth-child(4n+1) .ph{aspect-ratio:auto;block-size:100%}
+  .gallery{grid-template-columns:repeat(4,1fr);gap:20px}
+  .gallery>.ph{grid-column:auto;aspect-ratio:1}
+  .gallery>.ph:first-child{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
   .facts{grid-template-columns:repeat(3,1fr);gap:40px}
   .facts li{grid-template-columns:1fr;border-block-end:0!important;padding-block:28px 0}
   .facts .num{grid-row:auto;margin-block-end:14px;font-size:3.25rem}
