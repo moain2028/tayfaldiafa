@@ -92,6 +92,8 @@ svg{flex:none}
 
 /* ---------- الأقسام ---------- */
 .sec{padding-block:clamp(56px,11vw,112px);position:relative}
+/* الأقسام البعيدة لا تُحسب ولا تُرسم حتى تقترب من الشاشة. قِيس الأثر بـscripts/measure/cpu.mjs */
+.sec+.sec{content-visibility:auto;contain-intrinsic-size:auto 760px}
 .dark{background:var(--night);color:var(--cream)}
 .sand{background:var(--sand)}
 .sec h2{font-size:clamp(1.75rem,7vw,2.75rem);line-height:1.35;font-weight:600;max-inline-size:20ch}
@@ -232,8 +234,9 @@ select:focus,input:focus{outline:2px solid var(--goldink);outline-offset:1px;bor
   @keyframes drop{from{opacity:0;transform:translateY(-10px)}}
   .faq details[open] p{animation:rise .4s var(--ease) both}
   @supports (animation-timeline:view()){
-    .rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 75%}
-    .rv2{animation:rise linear both;animation-timeline:view();animation-range:entry 12% entry 95%}
+    /* المدى بطول ثابت لا بنسبة: الصندوق الطويل لا يبقى نصف شفاف طوال شاشة كاملة من التمرير */
+    .rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0 entry 150px}
+    .rv2{animation:rise linear both;animation-timeline:view();animation-range:entry 30px entry 200px}
     .sec .k::before{animation:draw linear both;animation-timeline:view();animation-range:entry 0% cover 28%}
     @keyframes draw{from{transform:scaleX(0)}to{transform:none}}
     .zoom img{animation:zoom linear both;animation-timeline:view();animation-range:entry 0% cover 55%}

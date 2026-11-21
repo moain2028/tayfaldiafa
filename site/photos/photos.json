@@ -1,20 +1,14 @@
 {
  "placeholder": true,
- "_note": "كل الصور مؤقتة للتصميم (placeholder). مصدرها مواقع أخرى للمالك بإذنه (2026-11-21) وصورتان برخصة مفتوحة من نتائج بحث الصور. تُستبدل بصور العميل قبل النشر.",
+ "_note": "كل الصور مؤقتة للتصميم (placeholder=true يمنع بناء النشر). مصدرها مواقع أخرى للمالك بإذنه (2026-11-21) وصورتان برخصة مفتوحة من نتائج بحث الصور. shared=true: الصورة نفسها ظاهرة في موقع آخر للمالك (فُحص بمطابقة آلية للصور). صورة «team-row» تُظهر طاقم علامة أخرى. تُستبدل كلها بصور العميل قبل النشر.",
  "photos": [
-  {
-   "key": "host-pour",
-   "file": "host-pouring-guest-majlis.webp",
-   "alt": "قهوجي يصبّ القهوة السعودية من دلّة ذهبية لضيف في مجلس",
-   "from": "ghaida-diafa",
-   "focus": "50% 30%"
-  },
   {
    "key": "team-row",
    "file": "hosts-team-row-hall.webp",
    "alt": "فريق من القهوجيين والصبّابين مصطفّون في قاعة مناسبات",
    "from": "ghaida-diafa",
-   "focus": "50% 45%"
+   "focus": "50% 45%",
+   "shared": true
   },
   {
    "key": "elder-pour",
@@ -28,14 +22,16 @@
    "file": "palace-hall-reception-hosts.webp",
    "alt": "صبّابون يستقبلون الضيوف عند مدخل قاعة مناسبات",
    "from": "ghaida-diafa",
-   "focus": "50% 50%"
+   "focus": "50% 50%",
+   "shared": true
   },
   {
    "key": "night-dallahs",
    "file": "majlis-golden-dallahs-dates-night.webp",
    "alt": "دلال ذهبية وفناجين وتمر في جلسة مسائية على ضوء الفوانيس",
    "from": "ghaida-diafa",
-   "focus": "40% 50%"
+   "focus": "40% 50%",
+   "shared": true
   },
   {
    "key": "tent",
@@ -56,7 +52,8 @@
    "file": "royal-dallah-dates-finjan-table.webp",
    "alt": "دلّة وفناجين وتمر على طاولة في مجلس",
    "from": "ghaida-diafa",
-   "focus": "50% 55%"
+   "focus": "50% 55%",
+   "shared": true
   },
   {
    "key": "dallahs-row",
@@ -98,7 +95,8 @@
    "file": "majlis-dallah-tall.webp",
    "alt": "طاولة ضيافة عليها فناجين وتمر وورد تحت ثريا",
    "from": "ghaida-diafa",
-   "focus": "50% 65%"
+   "focus": "50% 65%",
+   "shared": true
   },
   {
    "key": "dallah-tall",
@@ -115,25 +113,12 @@
    "focus": "50% 50%"
   },
   {
-   "key": "majlis-lamp",
-   "file": "majlis-dallahs-lamp.webp",
-   "alt": "دلّتان وتمر على طاولة في مجلس بإضاءة دافئة",
-   "from": "diafa-luxe-platform",
-   "focus": "45% 60%"
-  },
-  {
-   "key": "three-finjans",
-   "file": "dallah-three-finjans.webp",
-   "alt": "دلّة ذهبية وثلاثة فناجين وصحن تمر",
-   "from": "diafa-luxe-platform",
-   "focus": "50% 55%"
-  },
-  {
    "key": "lounge",
    "file": "lounge-dallahs-row.webp",
    "alt": "صف من الدلال والفناجين على طاولة في صالة استقبال",
    "from": "diafa-luxe-platform",
-   "focus": "50% 60%"
+   "focus": "50% 60%",
+   "shared": true
   },
   {
    "key": "tea",
