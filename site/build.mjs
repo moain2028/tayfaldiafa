@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 // طيف الضيافة — مولّد الموقع الثابت. بلا اعتماديات: Node 20+ فقط.
 //   node site/build.mjs                 بناء تجريبي: noindex، وبلا رقم هاتف
-//   node site/build.mjs --prod          بناء النشر: يرفض إن بقي حاجب (رقم، صور مؤقتة، صفحات معلّقة)
+//   node site/build.mjs --prod          بناء النشر: يرفض إن بقي حاجب (لا رقم، صور مؤقتة، نص مسودة)، ويستبعد الصفحات المعلّقة (hold)
 //   SITE_URL=https://…  يغيّر عنوان الموقع في canonical وخريطة الموقع
 //   TAYF_PHONE=9665XXXXXXXX  أو ملف site/.private.json {"phone":"9665XXXXXXXX"} (خارج git)
-// المخرجات: site/dist/ . الفحص بعد البناء: node site/scripts/check.mjs
+// المخرجات: site/dist/ وملف site/.build-meta.json (تقرؤه بوابة الفحص). الفحص بعد البناء: node site/scripts/check.mjs
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -23,6 +23,11 @@ const pages = Object.fromEntries(readdirSync(join(ROOT, 'content/pages')).filter
   const p = json('content/pages/' + f); return [p.slug, p];
 }));
 
+for (const s of Object.keys(cfg.pages)) if (!pages[s]) throw new Error('no content file for ' + s);
+for (const s of [...cfg.nav, ...cfg.footerServices, ...cfg.cities, ...Object.values(cfg.pages).flatMap((c) => c.related || []), ...Object.values(cfg.home).flatMap((v) => v.more || [])])
+  if (!cfg.pages[s]) throw new Error('unknown slug in site.config.json: ' + s);
+if (cfg.pages.talab.hold) throw new Error('talab cannot be held: every page links to it');
+
 const BASE = (process.env.SITE_URL || cfg.baseUrl).replace(/\/$/, '');
 let phone = process.env.TAYF_PHONE || '';
 if (!phone && existsSync(join(ROOT, '.private.json'))) phone = json('.private.json').phone || '';
@@ -34,15 +39,15 @@ if (PROD) {
   const blockers = [];
   if (!phone) blockers.push('لا رقم هاتف (TAYF_PHONE أو site/.private.json)');
   if (photoSpec.placeholder) blockers.push('الصور مؤقتة (photos.json: placeholder=true)');
-  if (home.draft !== false) blockers.push('النصوص مسودة لم يعتمدها العميل (content/home.json: draft)');
+  const drafts = [home.draft !== false ? 'home' : '', ...Object.keys(cfg.pages).filter((s) => !cfg.pages[s].hold && pages[s].draft !== false)].filter(Boolean);
+  if (drafts.length) blockers.push(`نصوص مسودة لم يعتمدها العميل (draft): ${drafts.join('، ')}`);
   if (blockers.length) { console.error('بناء النشر مرفوض:\n- ' + blockers.join('\n- ')); process.exit(1); }
 }
 const live = (slug) => cfg.pages[slug] && pages[slug] && !(PROD && cfg.pages[slug].hold);
 const slugs = Object.keys(cfg.pages).filter(live);
-for (const s of Object.keys(cfg.pages)) if (!pages[s]) throw new Error('no content for ' + s);
 
 // ---------- أدوات ----------
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const esc = (s) => { if (s == null) throw new Error('missing content value (undefined/null reached the page)'); return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
 const url = (slug) => (slug ? `/${slug}/` : '/');
 const abs = (path) => BASE + path;
 const label = (slug) => cfg.pages[slug].link || cfg.pages[slug].label;
@@ -63,8 +68,8 @@ function pic(key, sizes, { eager = false, alt } = {}) {
   const set = (ext) => p.widths.map((w) => `/img/${key}-${w}.${ext} ${w}w`).join(', ');
   const mid = p.widths.find((w) => w >= 800) || p.widths[p.widths.length - 1];
   const a = esc(alt ?? p.alt);
-  return `<picture><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}">` +
-    `<img src="/img/${key}-${mid}.webp" width="${p.w}" height="${p.h}" alt="${a}" style="object-position:${p.focus}" ` +
+  return `<picture><source type="image/avif" srcset="${set('avif')}" sizes="${esc(sizes)}"><source type="image/webp" srcset="${set('webp')}" sizes="${esc(sizes)}">` +
+    `<img src="/img/${key}-${mid}.webp" width="${p.w}" height="${p.h}" alt="${a}" style="object-position:${esc(p.focus)}" ` +
     (eager ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"') + '></picture>';
 }
 const S = { // قيم sizes بحسب موضع الصورة
@@ -74,9 +79,10 @@ const S = { // قيم sizes بحسب موضع الصورة
 
 const waText = (extra) => 'السلام عليكم طيف الضيافة، أبغى عرض سعر' + (extra ? ' ' + extra : '') + '.';
 const waHref = (extra) => `https://wa.me/${phone}?text=${encodeURIComponent(waText(extra))}`;
-const telHref = () => (phone ? `tel:+${phone}` : url('talab'));
-const btnWa = (extra, cls = '') => `<a class="btn ${cls}" href="${waHref(extra)}" rel="noopener">${I.wa}واتساب</a>`;
-const btnTel = (cls = 'ghost') => `<a class="btn ${cls}" href="${telHref()}">${I.tel}اتصال</a>`;
+// بلا رقم هاتف (البناء التجريبي فقط؛ بناء النشر يرفض): الزرّان يبقيان في مكانهما ليُرى التصميم،
+// ويفتحان نموذج الطلب الذي يحمل تنبيهًا ظاهرًا. لا يخرج رابط wa.me ولا tel بلا رقم.
+const btnWa = (extra, cls = '', q = url('talab')) => `<a class="btn ${cls}" href="${phone ? waHref(extra) : q}"${phone ? ' rel="noopener"' : ''}>${I.wa}واتساب</a>`;
+const btnTel = (cls = 'ghost', q = url('talab')) => `<a class="btn ${cls}" href="${phone ? `tel:+${phone}` : q}">${I.tel}اتصال</a>`;
 const more = (slug) => `<a class="more" href="${url(slug)}">${esc(label(slug))}${I.arrow}</a>`;
 const mores = (list) => { const l = list.filter(live); return l.length ? `<p class="mores">${l.map(more).join('')}</p>` : ''; };
 const head = (k, h2, lead, cls = '') => `<div class="head rv ${cls}"><div>${k ? `<p class="k">${esc(k)}</p>` : ''}<h2>${esc(h2)}</h2></div>${lead ? `<p class="lead">${esc(lead)}</p>` : ''}</div>`;
@@ -85,7 +91,7 @@ const head = (k, h2, lead, cls = '') => `<div class="head rv ${cls}"><div>${k ? 
 function header(current) {
   const links = cfg.nav.filter(live).map((s) => `<a class="l" href="${url(s)}"${s === current ? ' aria-current="page"' : ''}>${esc(cfg.pages[s].label)}</a>`).join('');
   const cta = `<a class="btn" href="${url('talab')}">اطلب عرض سعر</a>`;
-  return `<a class="skip" href="#main">تخطَّ إلى المحتوى</a><div class="prog" aria-hidden="true"></div>
+  return `<a class="skip" href="#main">انتقل إلى المحتوى</a><div class="prog" aria-hidden="true"></div>
 <header class="top"><div class="wrap">
 <a class="logo" href="/" aria-label="طيف الضيافة، الصفحة الرئيسية">${I.mark}<span>طيف الضيافة</span></a>
 <nav class="nav-wide" aria-label="الصفحات الرئيسية">${links}${cta}</nav>
@@ -101,22 +107,23 @@ function footer() {
 <div><h2>الخدمات</h2><ul>${cfg.footerServices.filter(live).map(li).join('')}</ul></div>
 <div><h2>المدن</h2><ul>${cfg.cities.filter(live).map(li).join('')}</ul></div>
 <div><h2>الموقع</h2><ul>${site.map(li).join('')}</ul></div>
-</div><p class="fine">طيف الضيافة · المنطقة الشرقية، المملكة العربية السعودية.${PROD ? '' : ` نسخة تجريبية للمراجعة: النصوص مسودة والصور مؤقتة${phone ? '' : '، ورقم الهاتف لم يُضف بعد فزر الاتصال يفتح صفحة الطلب'}.`}</p></div></footer>`;
+</div><p class="fine">طيف الضيافة · المنطقة الشرقية، المملكة العربية السعودية.${PROD ? '' : ` نسخة تجريبية للمراجعة: النصوص مسودة والصور مؤقتة${phone ? '' : '، ورقم الهاتف لم يُضف بعد، لذا يفتح زرّا واتساب والاتصال نموذج الطلب'}.`}</p></div></footer>`;
 }
 
-const bar = (extra) => `<div class="bar" role="group" aria-label="تواصل سريع">${btnWa(extra)}${btnTel()}</div>`;
+const bar = (extra, quoteHref) => `<div class="bar" role="group" aria-label="تواصل سريع">${btnWa(extra, '', quoteHref)}${btnTel('ghost', quoteHref)}</div>`;
 
 function form() {
   const opt = (l) => l.map((o) => `<option>${esc(o)}</option>`).join('');
-  return `<form class="form rv2" id="q" data-wa="${phone}" action="${url('talab')}">
+  return `<form class="form rv2" id="q" data-wa="${phone}"${phone ? '' : ' data-note="نسخة تجريبية: رقم واتساب لم يُضف بعد، فالرسالة تظهر هنا ولا تُرسل."'} action="${url('talab')}">
 <label>نوع المناسبة<select name="o" required><option value="">اختر</option>${opt(cfg.form.occasions)}</select></label>
 <label>المدينة<select name="c" required><option value="">اختر</option>${opt(cfg.form.cities)}</select></label>
 <label>التاريخ<input name="d" type="date" required></label>
 <label>عدد الضيوف<input name="g" type="number" inputmode="numeric" min="1" max="5000" autocomplete="off" required></label>
 <button class="btn full" type="submit">${I.wa}أرسل الطلب على واتساب</button>
 <output class="full" id="out" aria-live="polite"></output>
-<p class="hint full">لا يُحفظ شيء في الموقع. يفتح واتساب برسالة جاهزة تراجعها ثم ترسلها بنفسك.</p>
-<noscript><p class="hint full">النموذج يحتاج JavaScript. يمكنك مراسلتنا مباشرة: <a href="${waHref()}">واتساب</a>.</p></noscript>
+<p class="hint full">لا يُحفظ شيء في الموقع. يُفتح واتساب برسالة جاهزة تراجعها ثم ترسلها بنفسك.</p>
+${phone ? '' : '<p class="hint full">نسخة تجريبية: رقم الهاتف لم يُضف بعد. زرّا واتساب والاتصال يفتحان هذا النموذج مؤقتًا، والرسالة تظهر هنا ولا تُرسل.</p>'}
+<noscript><p class="hint full">لا يعمل النموذج إلا بتفعيل JavaScript في متصفحك.${phone ? ` يمكنك مراسلتنا مباشرة: <a href="${waHref()}">واتساب</a>.` : ''}</p></noscript>
 </form>`;
 }
 
@@ -126,7 +133,9 @@ const cityLinks = () => `<nav class="cities rv2" aria-label="مدن الخدمة
 const APP_JS = read('src/app.js').replace(/^\s*\/\/.*$/gm, '').replace(/\n\s*/g, '\n').trim();
 const CSS = read('src/styles.css').replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s*\n\s*/g, '').trim();
 
-function doc({ path, title, desc, body, cls = '', ogImg, ld = [], noindex = false, current }) {
+function doc({ path, title, desc, body: raw, cls = '', ogImg, ld = [], noindex = false, current }) {
+  // صفحة بلا صورة واجهة: أول صورة فيها هي الأهم، فلا تُؤجَّل.
+  const body = /fetchpriority="high"/.test(raw) ? raw : raw.replace('loading="lazy" decoding="async"', 'fetchpriority="high"');
   const og = abs(`/img/${ogImg}-${photos[ogImg].widths.at(-1)}.webp`);
   return `<!doctype html>
 <html lang="ar" dir="rtl">
@@ -140,11 +149,12 @@ ${!PROD || noindex ? '<meta name="robots" content="noindex, nofollow">\n' : ''}$
 <link rel="preload" href="/fonts/elmessiri-subset.woff2" as="font" type="font/woff2" crossorigin>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(cfg.name)}">
-<meta property="og:locale" content="${cfg.locale}">
+<meta property="og:locale" content="${esc(cfg.locale)}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${abs(path)}">
 <meta property="og:image" content="${og}">
+<meta property="og:image:alt" content="${esc(photos[ogImg].alt)}">
 <meta name="twitter:card" content="summary_large_image">
 <style>${CSS}</style>
 ${ld.map((o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`).join('\n')}
@@ -155,7 +165,7 @@ ${header(current)}
 ${body}
 </main>
 ${footer()}
-${bar(current && cfg.pages[current]?.city ? `لمناسبة في ${cfg.pages[current].city}` : '')}
+${bar(current && cfg.pages[current]?.city ? `لمناسبة في ${cfg.pages[current].city}` : '', cls === 'home' ? '#talab' : current === 'talab' ? '#q' : url('talab'))}
 <script>${APP_JS}</script>
 </body>
 </html>
@@ -196,7 +206,7 @@ function renderHome() {
   const body = `<div class="hero" id="top">
 <div class="hero__img">${pic(H.hero, S.hero, { eager: true })}</div>
 <div class="hero__txt"><p class="k">${esc(h.hero.kicker)}</p><h1>${esc(h.hero.h1)}</h1><p class="lead">${esc(h.hero.lead)}</p>
-<div class="cta">${btnWa()}${btnTel()}</div></div>
+<div class="cta">${btnWa('', '', '#talab')}${btnTel('ghost', '#talab')}</div></div>
 </div>
 
 <section class="sec" id="khadamat"><div class="wrap">
@@ -287,7 +297,7 @@ ${cityLinks()}
 </div></section>` : '';
 
   const secForm = c.type === 'quote' ? `<section class="sec sand light"><div class="wrap two">
-${head('', 'تفاصيل المناسبة', 'أربعة حقول، ثم يفتح واتساب برسالة جاهزة.')}
+${head('', 'تفاصيل المناسبة', 'املأ أربعة حقول، ثم يُفتح واتساب برسالة جاهزة.')}
 ${form()}
 </div></section>` : '';
 
@@ -305,7 +315,7 @@ ${head('', 'صفحات ذات صلة', '')}
   const extra = c.city ? `لمناسبة في ${c.city}` : '';
   const band = `<section class="sec band dark">${c.hero ? `<div class="ph">${pic(c.hero, '100vw', { alt: '' })}</div>` : ''}<div class="wrap rv">
 <p class="k">${esc(cfg.name)}</p><h2>${esc(p.cta.h2)}</h2><p>${esc(p.cta.p)}</p>
-<div class="acts">${btnWa(extra)}${c.type === 'quote' ? btnTel() : `<a class="btn ghost" href="${url('talab')}">اطلب عرض سعر</a>`}</div>
+<div class="acts">${btnWa(extra, '', c.type === 'quote' ? '#q' : url('talab'))}${c.type === 'quote' ? btnTel('ghost', '#q') : `<a class="btn ghost" href="${url('talab')}">اطلب عرض سعر</a>`}</div>
 </div></section>`;
 
   const order = c.type === 'quote' ? [secForm, secProse, secCards, secFaq] : [secProse, secGallery, secCities, secCards, secFaq];
@@ -334,7 +344,10 @@ out('404.html', render404());
 
 // خريطة الموقع: تاريخ التعديل من ملف المحتوى نفسه، لا من يوم البناء.
 const sm = [['/', home.updated], ...slugs.map((s) => [url(s), pages[s].updated])];
-out('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sm.map(([u, d]) => `<url><loc>${abs(u)}</loc><lastmod>${d}</lastmod></url>`).join('\n')}\n</urlset>\n`);
+for (const [u, d] of sm) if (!/^\d{4}-\d{2}-\d{2}$/.test(d || '')) throw new Error('bad or missing "updated" date for ' + u);
+out('sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sm.map(([u, d]) => `<url><loc>${esc(abs(u))}</loc><lastmod>${d}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 out('robots.txt', PROD ? `User-agent: *\nAllow: /\n\nSitemap: ${abs('/sitemap.xml')}\n` : 'User-agent: *\nDisallow: /\n');
+
+writeFileSync(join(ROOT, '.build-meta.json'), JSON.stringify({ base: BASE, prod: PROD, phoneSet: !!phone, pages: slugs.length + 1, held: PROD ? held : [] }) + '\n');
 
 console.log(`${PROD ? 'PROD' : 'PREVIEW'} build: ${slugs.length + 1} pages + 404 -> site/dist  (base ${BASE}, phone ${phone ? 'set' : 'not set'}${held.length ? `, held in prod: ${held.join(', ')}` : ''})`);

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // بوابة فحص الموقع المبني. تُشغَّل بعد كل بناء:  node site/scripts/check.mjs
 // تفحص site/dist فقط (لا تفتح متصفحًا). الخروج 1 عند أي خطأ.
+//   --prod : يرفض إن كان البناء تجريبيًّا (يُستعمل قبل النشر).
 // الحدود 30–70 للعنوان و110–165 للوصف من بوابة المالك السابقة، لا من جوجل (docs/research/standards.md البند 13).
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -9,6 +10,11 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
 const cfg = JSON.parse(readFileSync(join(ROOT, 'site.config.json'), 'utf8'));
+const meta = JSON.parse(readFileSync(join(ROOT, '.build-meta.json'), 'utf8')); // يكتبه build.mjs
+const BASE = meta.base;
+let phone = process.env.TAYF_PHONE || '';
+if (!phone && existsSync(join(ROOT, '.private.json'))) phone = JSON.parse(readFileSync(join(ROOT, '.private.json'), 'utf8')).phone || '';
+if (!meta.phoneSet) phone = '';
 const SIM_MAX = 0.3; // أقصى تشابه مقبول بين صفحتين (اقتراح عمل، لا معيار رسمي)
 const BANNED = ['الأفضل', 'رقم واحد', 'أرخص', 'خصم', 'معتمد', 'مرخّص', 'مرخص', 'مضمون', 'على مدار الساعة', 'مؤسسة', 'شركة', 'نفخر', 'لا مثيل'];
 
@@ -27,7 +33,7 @@ for (const f of files) {
   const html = readFileSync(f, 'utf8'), p = pathOf(f), is404 = p === '/404.html';
   const title = (html.match(/<title>([^<]*)<\/title>/) || [])[1] || '';
   const desc = attr((html.match(/<meta name="description"[^>]*>/) || [''])[0], 'content') || '';
-  const dec = (s) => s.replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+  const dec = (s) => s.replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
   const tl = [...dec(title)].length, dl = [...dec(desc)].length;
   if (!is404) {
     if (tl < 30 || tl > 70) err(p, `طول العنوان ${tl} (المطلوب 30–70)`);
@@ -46,12 +52,18 @@ for (const f of files) {
   // canonical إلى الصفحة نفسها
   const canon = attr((html.match(/<link rel="canonical"[^>]*>/) || [''])[0], 'href');
   if (is404) { if (canon) err(p, 'صفحة الخطأ لا تحمل canonical'); }
-  else if (!canon || new URL(canon).pathname !== p) err(p, `canonical = ${canon}`);
+  else if (canon !== BASE + p) err(p, `canonical = ${canon} (المتوقع ${BASE + p})`);
+  const ogUrl = attr((html.match(/<meta property="og:url"[^>]*>/) || [''])[0], 'content');
+  if (!is404 && ogUrl !== BASE + p) err(p, `og:url = ${ogUrl}`);
+  if (/\bundefined\b|\bnull\b|\[object Object\]|\bNaN\b/.test(html.replace(/<(script|style)[\s\S]*?<\/\1>/g, ''))) err(p, 'قيمة ناقصة وصلت الصفحة (undefined/null)');
+  let waLinks = 0;
   // الروابط الداخلية
   for (const m of html.matchAll(/<a\s[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g)) {
     const [, href, inner] = m;
     if (href.startsWith('/')) { if (!existsSync(fileFor(href))) err(p, `رابط مكسور ${href}`); }
-    else if (!/^(https:\/\/wa\.me\/|tel:\+?\d|#)/.test(href)) err(p, `رابط غير متوقع ${href}`);
+    else if (href.startsWith('#')) { if (!new RegExp(`id="${href.slice(1)}"`).test(html)) err(p, `رابط داخل الصفحة بلا هدف ${href}`); }
+    else if (phone && href.startsWith(`https://wa.me/${phone}?text=`)) waLinks++;
+    else if (!(phone && href === `tel:+${phone}`)) err(p, `رابط غير متوقع ${href.slice(0, 60)}`);
     const label = text(inner) || attr(m[0], 'aria-label') || '';
     if (!label) err(p, `رابط بلا نص ${href}`);
     if (/^(اعرف أكثر|المزيد|اضغط هنا|هنا)$/.test(label)) err(p, `نص رابط لا يسمّي وجهته: «${label}»`);
@@ -75,12 +87,13 @@ for (const f of files) {
     if (['ProfessionalService', 'LocalBusiness'].includes(o['@type'])) bizCount++;
   }
   // النص الظاهر
-  const body = text((html.match(/<main[\s\S]*<\/main>/) || [''])[0]);
+  if (meta.prod && !is404 && !waLinks) err(p, 'لا رابط واتساب في الصفحة');
+  // أرقام الترتيب (١ ٢ ٣) يولّدها القالب وليست حقائق، فتُستبعد من فحص الأرقام.
+  const body = text((html.match(/<main[\s\S]*<\/main>/) || [''])[0].replace(/<span class="num"[^>]*>[^<]*<\/span>/g, ' '));
   for (const w of BANNED) if (body.includes(w) || title.includes(w) || desc.includes(w)) err(p, `كلمة ممنوعة: ${w}`);
   const digits = body.match(/[0-9٠-٩]+/g) || [];
-  const allowed = new Set(['١', '٢', '٣']); // أرقام الخطوات فقط
-  for (const d of digits) if (!allowed.has(d)) err(p, `رقم في النص: ${d}`);
-  if (/(?:9665|05)\d{8}/.test(html) && !process.env.TAYF_PHONE && !existsSync(join(ROOT, '.private.json'))) err(p, 'رقم هاتف في البناء بلا مصدر');
+  for (const d of digits) err(p, `رقم في النص: ${d}`);
+  for (const n of html.match(/(?:9665|05)\d{8}/g) || []) if (n !== phone) err(p, `رقم هاتف غير المعتمد في البناء: ${n.slice(0, 5)}…`);
   if (/[\u0600-\u06FF]\s*!/.test(body)) err(p, 'علامة تعجب في النص');
   pages.push({ p, body, is404, robots: attr((html.match(/<meta name="robots"[^>]*>/) || [''])[0], 'content') || '' });
 }
@@ -88,6 +101,7 @@ if (bizCount !== 1) errors.push(`عدد كيانات النشاط في البي�
 
 // خريطة الموقع = الصفحات المبنية (عدا صفحة الخطأ)
 const sm = readFileSync(join(DIST, 'sitemap.xml'), 'utf8');
+for (const m of sm.matchAll(/<loc>([^<]+)<\/loc>/g)) if (!m[1].startsWith(BASE + '/')) errors.push(`عنوان خاطئ في خريطة الموقع ${m[1]}`);
 const locs = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname).sort();
 const built = pages.filter((x) => !x.is404).map((x) => x.p).sort();
 if (JSON.stringify(locs) !== JSON.stringify(built)) errors.push(`خريطة الموقع لا تطابق الصفحات: في الخريطة ${locs.length}، مبني ${built.length}`);
@@ -104,7 +118,10 @@ for (let i = 0; i < sets.length; i++) for (let j = i + 1; j < sets.length; j++) 
 sims.sort((x, y) => y.v - x.v);
 for (const s of sims) if (s.v > SIM_MAX) errors.push(`تشابه ${s.v.toFixed(2)} بين ${s.a} و ${s.b} (الحد ${SIM_MAX})`);
 
-const preview = pages.every((x) => /noindex/.test(x.robots));
+const preview = !meta.prod;
+if (preview && !pages.every((x) => /noindex/.test(x.robots))) errors.push('بناء تجريبي فيه صفحة بلا noindex');
+if (!preview && pages.some((x) => !x.is404 && /noindex/.test(x.robots))) errors.push('بناء النشر فيه صفحة noindex');
+if (process.argv.includes('--prod') && preview) errors.push('البناء تجريبي؛ شغّل: node site/build.mjs --prod');
 for (const e of errors) console.log('ERROR ' + e);
 for (const w of warns) console.log('WARN  ' + w);
 console.log(`أعلى تشابه: ${sims.slice(0, 3).map((s) => `${s.v.toFixed(2)} ${s.a} ↔ ${s.b}`).join(' · ')}`);

@@ -20,3 +20,4 @@ test-results/
 
 # site: private build inputs (phone number never enters this public repo)
 site/.private.json
+site/.build-meta.json

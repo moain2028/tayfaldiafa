@@ -14,6 +14,9 @@ const page = await ctx.newPage();
 const resp = await page.goto(url, { waitUntil: 'networkidle', timeout: 45000 });
 await page.evaluate(() => document.fonts.ready); await page.waitForTimeout(500);
 if (hideFixed === '1') await page.evaluate(() => { for (const el of document.querySelectorAll('body *')) if (getComputedStyle(el).position === 'fixed') el.style.display = 'none'; });
+// content-visibility:auto sections far from the viewport are not painted in a full-page capture (seen 2026-11-21: blank blocks).
+// Force them visible for the picture only; this changes nothing in the site.
+await page.addStyleTag({ content: '*{content-visibility:visible!important}' });
 // Scroll through the page first: loading="lazy" images below the fold are otherwise captured as empty boxes.
 for (let y = 0, H = await page.evaluate(() => document.documentElement.scrollHeight); y < H; y += 600) { await page.evaluate((y) => scrollTo(0, y), y); await page.waitForTimeout(80); }
 await page.evaluate(() => scrollTo(0, 0)); await page.waitForTimeout(400);
