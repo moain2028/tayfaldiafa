@@ -1,0 +1,121 @@
+{
+ "meta": {
+  "lighthouse": "13.6.0",
+  "formFactor": "mobile",
+  "throttling": "simulate",
+  "cpuSlowdown": 4
+ },
+ "sites": {
+  "dammam": {
+   "runs": 3,
+   "perfRuns": [
+    100,
+    99,
+    96
+   ],
+   "lcpMsRuns": [
+    1803,
+    1860,
+    1800
+   ],
+   "tbtMsRuns": [
+    26,
+    97,
+    207
+   ],
+   "median": {
+    "perf": 99,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 69,
+    "fcpMs": 802,
+    "lcpMs": 1803,
+    "tbtMs": 97,
+    "cls": 0,
+    "kb": 181
+   },
+   "benchmarkIndex": [
+    1247,
+    1127.5,
+    1246.5
+   ],
+   "failing": [
+    "is-crawlable"
+   ]
+  },
+  "home": {
+   "runs": 3,
+   "perfRuns": [
+    97,
+    97,
+    94
+   ],
+   "lcpMsRuns": [
+    1803,
+    1860,
+    1860
+   ],
+   "tbtMsRuns": [
+    177,
+    194,
+    275
+   ],
+   "median": {
+    "perf": 97,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 69,
+    "fcpMs": 679,
+    "lcpMs": 1860,
+    "tbtMs": 194,
+    "cls": 0,
+    "kb": 303
+   },
+   "benchmarkIndex": [
+    1183,
+    1186,
+    1200.5
+   ],
+   "failing": [
+    "is-crawlable"
+   ]
+  },
+  "talab": {
+   "runs": 3,
+   "perfRuns": [
+    94,
+    96,
+    96
+   ],
+   "lcpMsRuns": [
+    1358,
+    1353,
+    1355
+   ],
+   "tbtMsRuns": [
+    274,
+    212,
+    222
+   ],
+   "median": {
+    "perf": 96,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 69,
+    "fcpMs": 725,
+    "lcpMs": 1355,
+    "tbtMs": 222,
+    "cls": 0,
+    "kb": 94
+   },
+   "benchmarkIndex": [
+    1254.5,
+    1195,
+    1217
+   ],
+   "failing": [
+    "is-crawlable"
+   ]
+  }
+ }
+}

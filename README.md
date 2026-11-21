@@ -1,6 +1,6 @@
 # tayfaldiafa
 
-موقع «طيف الضيافة» (قهوجيين وصبابين، المنطقة الشرقية) — **قيد التأسيس**. لا يوجد كود للموقع بعد. الموجود: نظام الذاكرة، المعايير المرجعية، دراسات مقيسة، ملخص العميل، هيكل الموقع المقترح مع مخطط هيكلي يُفتح على الجوال، مقارنة الخطوط، ومهارات لبناء مواقع العملاء.
+موقع «طيف الضيافة» (قهوجيين وصبابين، المنطقة الشرقية). **الموقع مبني في [site/](site/README.md) بحالة تجريبية:** 18 صفحة، نصوصها مسودة وصورها مؤقتة ولا رقم هاتف فيها. لم يُنشر. معه في المستودع: نظام الذاكرة، المعايير المرجعية، الدراسات المقيسة، ملخص العميل، ومهارات لبناء مواقع العملاء.
 
 | أنا… | أبدأ من |
 |---|---|
@@ -26,6 +26,8 @@
 | [docs/client/brief.md](docs/client/brief.md) | من العميل، ماذا يريد، وماذا وُعد به؟ |
 | [docs/research/search-intent-east.md](docs/research/search-intent-east.md) | ماذا يكتب الناس في جوجل في الشرقية، ومن يظهر لهم؟ |
 | [docs/design/site-structure.md](docs/design/site-structure.md) | ما الصفحات، وما ترتيب الرئيسية على الجوال؟ |
+| [site/](site/README.md) | كيف يُبنى الموقع ويُفحص، وكيف تُضاف صفحة أو تُبدَّل صورة؟ |
+| [docs/design/preview/](docs/design/preview/home-390.jpg) | كيف تبدو أول شاشة الآن؟ |
 | [docs/design/wireframe/](docs/design/wireframe/index.html) | كيف يبدو الترتيب على جوال؟ (مخطط رمادي، ليس تصميمًا) |
 | [docs/research/arabic-fonts.md](docs/research/arabic-fonts.md) | أي خط؟ الوزن والترخيص والعيّنة |
 | [docs/research/owner-skill-review.md](docs/research/owner-skill-review.md) | ما الذي أُخذ من مهارة المالك وما صُحّح؟ |
@@ -42,4 +44,5 @@
 ## التحقق
 ```
 node scripts/check-memory.mjs
+node site/build.mjs && node site/scripts/check.mjs
 ```

@@ -9,7 +9,7 @@
 3. [docs/FACTS.md](docs/FACTS.md) — حقائق النشاط التجاري، والمجهول منها.
 4. [LESSONS.md](LESSONS.md) ثم [docs/research/inherited-lessons.md](docs/research/inherited-lessons.md) — أخطاء لا تُكرَّر.
 5. [docs/research/standards.md](docs/research/standards.md) — المعايير المتحقق منها بمصادرها.
-6. [docs/design/architecture.md](docs/design/architecture.md) و [docs/adr/](docs/adr/) — القرارات ولماذا.
+6. [docs/design/architecture.md](docs/design/architecture.md) و [docs/adr/](docs/adr/) — القرارات ولماذا. كود الموقع: [site/README.md](site/README.md).
 7. [docs/research/own-sites-study.md](docs/research/own-sites-study.md) و [luxury-ux-research.md](docs/research/luxury-ux-research.md) — ما دُرس وما يؤخذ منه.
 8. [skills/](skills/README.md) — الخطوات والبوابات لبناء الموقع. اقرأ المهارة التي تخص مهمتك قبل البدء.
 
@@ -18,7 +18,9 @@
 - قياس موقع (أول شاشة + Lighthouse + المرونة): [scripts/measure/README.md](scripts/measure/README.md)
 - العميل وما قاله: [docs/client/brief.md](docs/client/brief.md) · هيكل الموقع المقترح: [docs/design/site-structure.md](docs/design/site-structure.md)
 - **المستودع عام:** لا هاتف، لا مبلغ، لا تفريغ محادثات، لا أسماء أطراف أخرى. العميل طلب السرّية.
-- أوامر البناء والاختبار: لا توجد بعد — التقنية لم تُحسم ([ADR-0002](docs/adr/0002-tech-stack.md)).
+- بناء الموقع وفحصه: `node site/build.mjs` ثم `node site/scripts/check.mjs` (يجب أن ينجحا قبل أي commit يمسّ `site/`). التفصيل وبناء النشر: [site/README.md](site/README.md).
+- فحص الموقع في المتصفح: `node scripts/measure/site-smoke.mjs <الرابط>` ([scripts/measure/README.md](scripts/measure/README.md)).
+- **رقم الهاتف لا يُكتب في أي ملف يدخل git.** يُعطى عند البناء بـ`TAYF_PHONE` أو `site/.private.json`.
 
 ## القواعد
 - **لا معلومة عن النشاط بلا مصدر.** اسم، هاتف، مدن، أسعار، أرقام خبرة أو عملاء: تؤخذ من [docs/FACTS.md](docs/FACTS.md) فقط. إن كانت «مجهول» فاسأل المالك ولا تخترع قيمة مؤقتة تبدو حقيقية.

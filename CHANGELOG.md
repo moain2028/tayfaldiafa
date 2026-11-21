@@ -29,7 +29,18 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 - `docs/research/standards.md`: البندان 20 (حالات الفهرسة في Search Console) و21 (ترخيص الخطوط المفتوحة)، و`viewport-fit=cover`، و`prefers-reduced-motion`، وإلغاء `middleware` في Next.
 - `docs/research/data/2026-11-21/wireframe-responsive.json`.
 
+- `site/`: موقع «طيف الضيافة» بحالة تجريبية. مولّد ثابت بلا اعتماديات (`build.mjs`)، ورقة أنماط وسكربت واحد، 18 صفحة نصوصها مسودة، 18 صورة مؤقتة بمقاسات AVIF و WebP، خطّان مستضافان، بوابة (`scripts/check.mjs`)، معالجة صور (`scripts/images.py`)، و`README.md`.
+- `scripts/measure/cpu.mjs` (كلفة المعالج لصفحة) و`scripts/measure/site-smoke.mjs` (فحص الموقع في المتصفح).
+- `docs/adr/0003-visual-direction.md`: الألوان والخطوط والحركة.
+- `docs/design/preview/home-390.jpg`: لقطة أول شاشة.
+- `docs/research/data/2026-11-21/`: ‏`suggest-round5.json` و`site-lighthouse.json` و`site-responsive.json`.
+
 ### Changed
+- `docs/adr/0002-tech-stack.md`: **مقبول** — مولّد ثابت خاص بالمشروع، مع الدليل المقيس.
+- `STATUS.md` و`README.md` و`AGENTS.md` (أوامر البناء، قاعدة رقم الهاتف) و`docs/FACTS.md` و`docs/design/site-structure.md` و`docs/design/architecture.md` و`docs/research/search-intent-east.md`: حُدّثت بما في الجولة الخامسة.
+- `skills/`: ‏quality-gates و motion و mobile-first إلى 0.3 بما تعلّمناه من أول بناء.
+- `scripts/measure/`: ‏`responsive.mjs` لا يعدّ ما بداخل `<details>` مغلق؛ `fullshot.mjs` يحمّل الصور المؤجلة ويرسم الأقسام البعيدة؛ `static-server.mjs` يقبل عنوان الاستماع ويخدم `404.html`.
+- `.gitignore`: ‏`site/.private.json` و`site/.build-meta.json`.
 - `skills/`: ‏after-launch و search-appearance و motion و mobile-first إلى 0.2، و arabic-web إلى 0.3.
 - `docs/research/owner-skill-review.md`: الملفات التي لم تكن مقروءة قُرئت (البند 6)، وصُحّح عمود «أين صار».
 - `docs/adr/0002-tech-stack.md`: تجربة المسار المتداخل وما وُجد في روابط القائمة. الحالة ما زالت «مقترح».
