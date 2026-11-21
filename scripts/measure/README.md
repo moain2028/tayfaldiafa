@@ -44,6 +44,15 @@ node scripts/measure/lh-summary.mjs <مجلد-المخرجات>/lh summary.json
 `<مجلد-المخرجات>/shots/<الاسم>.png` و `<مجلد-المخرجات>/probe-<أول-اسم>.json`، وفيه لكل صفحة:
 `screens` طول الصفحة بالشاشات · `dom` عدد العناصر · `h1` و`h1Px` و`h1Font` · `bodyFont` و`bodyBg` · `h2` عناوين الأقسام · `wa` و`tel` عدد روابط واتساب والاتصال · `forms` · `imgs` · `foldCtas` العناصر القابلة للنقر في أول شاشة · `foldWords` كلمات أول شاشة · `overflowX` الفائض الأفقي · `kbJs` `kbImg` `kbFont` `kbAll` الأوزان · `reqs` عدد الطلبات · `ld` أنواع البيانات المهيكلة · `robots` · `lang` · `dir` · `jsErrors`.
 
+## فحص المرونة `responsive.mjs`
+```bash
+node scripts/measure/responsive.mjs <مجلد-المخرجات> <الاسم> <الرابط> [<الاسم> <الرابط> …]
+```
+ستة مقاسات: 320×568 · 360×800 · 390×844 · 414×896 · 768×1024 · 1280×800. Chromium فقط.
+يخرج `<مجلد-المخرجات>/shots/<الاسم>-<العرض>.png` و `responsive-<الاسم>.json`، وفيه لكل عرض:
+`overflowX` · `taps` و`tapsUnder24` و`tapsUnder48` · `minFontPx` و`textUnder12` · `fieldsUnder16` · `h1Px` و`h1Lines` · `actionInFirstScreen` · `fixedCoverPct` · `screens`.
+الحدود في [skills/mobile-first](../../skills/mobile-first/SKILL.md).
+
 ## حدود تُكتب مع كل رقم
 - قياس مختبري. جوجل تحكم على بيانات الزوار الحقيقيين ([standards.md](../../docs/research/standards.md) البند 1).
 - 3 مرات والوسيط دائمًا: تشغيل واحد أعطى 47 ثم 85 و80 لنفس الصفحة.

@@ -15,7 +15,16 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 - `skills/`: ست مهارات بحالة مسودة لبناء موقع عميل جديد.
 - `docs/research/standards.md`: أجزاء LCP، والبنود 9–12.
 
+- `docs/client/brief.md`: ملخص العميل ونيته ونطاق ما وُعد به، منقّى للمستودع العام.
+- `docs/research/search-intent-east.md` وبياناته: ما يُكتب في جوجل في الشرقية ومن يظهر.
+- `docs/research/owner-skill-review.md`: مراجعة مهارة المالك (يُؤخذ / يُصحَّح / بلا مصدر / لا يُنقل).
+- `docs/design/site-structure.md`: الصفحات، ترتيب الرئيسية على الجوال، شكل النتيجة في البحث.
+- `scripts/measure/responsive.mjs`: فحص ستة مقاسات.
+- `skills/`: خمس مهارات جديدة (local-search-study، search-appearance، mobile-first، motion، after-launch).
+- `docs/research/standards.md`: البنود 13–19.
+
 ### Changed
+- `skills/` الخمس القديمة إلى 0.2 بما دُمج من مهارة المالك. `docs/FACTS.md` بحقائق العميل. `ADR-0002` بتجربة تعدد الصفحات.
 - `docs/adr/0002-tech-stack.md`: دليل مقيس وخيار رابع؛ الميل المبدئي من Astro إلى محرّك المالك. الحالة ما زالت «مقترح».
 - `scripts/check-memory.mjs`: يتجاوز `.refs/` و`.tools/`.
 - `STATUS.md`، `docs/FACTS.md`، `docs/research/reference-sites.md`، `AGENTS.md`، `README.md`، `LESSONS.md`.

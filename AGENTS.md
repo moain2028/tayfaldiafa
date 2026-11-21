@@ -15,7 +15,9 @@
 
 ## الأوامر
 - فحص سلامة الذاكرة: `node scripts/check-memory.mjs` (يجب أن ينجح قبل كل commit)
-- قياس موقع (أول شاشة + Lighthouse): [scripts/measure/README.md](scripts/measure/README.md)
+- قياس موقع (أول شاشة + Lighthouse + المرونة): [scripts/measure/README.md](scripts/measure/README.md)
+- العميل وما قاله: [docs/client/brief.md](docs/client/brief.md) · هيكل الموقع المقترح: [docs/design/site-structure.md](docs/design/site-structure.md)
+- **المستودع عام:** لا هاتف، لا مبلغ، لا تفريغ محادثات، لا أسماء أطراف أخرى. العميل طلب السرّية.
 - أوامر البناء والاختبار: لا توجد بعد — التقنية لم تُحسم ([ADR-0002](docs/adr/0002-tech-stack.md)).
 
 ## القواعد
