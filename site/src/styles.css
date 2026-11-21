@@ -1,4 +1,4 @@
-/* طيف الضيافة — ورقة الأنماط الوحيدة (الإصدار 2: داكن كله، موسَّط، زجاج وذهب بعمق).
+/* طيف الضيافة — ورقة الأنماط الوحيدة (الإصدار 2: داكن كله، موسَّط، ذهب بعمق؛ واجهة الرئيسية الإصدار 3: قوس ذهبي).
    الجوال أولًا، والأعرض يُضاف بـmin-width. القرار: docs/adr/0004-visual-direction-v2.md
    القواعد: skills/mobile-first · skills/motion · skills/arabic-web. لا letter-spacing على العربي (اللاتيني فقط). */
 @font-face{font-family:"Amiri";src:url(/fonts/amiri-700-subset.woff2) format("woff2");font-weight:700;font-style:normal;font-display:swap}
@@ -156,6 +156,52 @@ svg{flex:none}
   .hero h1{background-size:100% 100%;filter:drop-shadow(0 2px 16px rgba(201,164,92,.3))}}
 @media (forced-colors:active){.hero h1,.sec h2{background:none;-webkit-text-fill-color:currentColor}}
 
+/* ---------- واجهة الرئيسية (الإصدار 3): الصورة داخل قوس ذهبي يرسم نفسه، لا لوحة زجاجية ---------- */
+.hx{align-items:center;align-content:center;padding-block-end:18px;background:
+  radial-gradient(64% 40% at 50% 30%,rgba(201,164,92,.24),transparent 72%),
+  radial-gradient(120% 70% at 50% 112%,rgba(201,164,92,.1),transparent 60%),var(--rich)}
+.hx::before{background:linear-gradient(180deg,rgba(10,7,5,.7) 0,transparent 16%,transparent 70%,var(--night) 100%)}
+.hx__stage{position:relative;display:grid;justify-items:center;inline-size:100%;--ah:clamp(220px,38vh,440px);--ah:clamp(220px,38svh,440px);--rs:calc(var(--ah) * 1.62)}
+.rose{position:absolute;z-index:-1;inline-size:var(--rs);block-size:var(--rs);left:50%;margin-left:calc(var(--rs) / -2);inset-block-start:calc(var(--ah) * -.33);opacity:.3;pointer-events:none}
+.arches{position:relative;display:grid;grid-auto-flow:column;justify-content:center;align-items:end;gap:34px}
+.arch{position:relative;block-size:var(--ah);aspect-ratio:4/5}
+.arch::after{content:"";position:absolute;z-index:-1;inset:auto 2% -22px;block-size:44px;background:radial-gradient(closest-side,rgba(201,164,92,.5),transparent);pointer-events:none}
+.arch__win{position:absolute;inset:0;overflow:hidden;background:var(--night3);border-radius:46% 46% 0 0/34% 34% 0 0;transform:translateZ(0);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 400' preserveAspectRatio='none'%3E%3Cpath d='M20 400V170C20 100 70 70 120 52Q150 41.2 160 14Q170 41.2 200 52C250 70 300 100 300 170V400Z'/%3E%3C/svg%3E") center/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 400' preserveAspectRatio='none'%3E%3Cpath d='M20 400V170C20 100 70 70 120 52Q150 41.2 160 14Q170 41.2 200 52C250 70 300 100 300 170V400Z'/%3E%3C/svg%3E") center/100% 100% no-repeat}
+.arch__win picture,.arch__win img,.arch__alt{position:absolute;inset:0;inline-size:100%;block-size:100%}
+.arch__win img{object-fit:cover}
+.arch__alt{opacity:0}
+.arch__win::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(10,7,5,.94) 0,rgba(10,7,5,.4) 26%,transparent 52%),linear-gradient(180deg,rgba(10,7,5,.4),transparent 26%)}
+.arch__fr{position:absolute;inset:0;inline-size:100%;block-size:100%;overflow:visible;pointer-events:none;filter:drop-shadow(0 0 9px rgba(201,164,92,.45))}
+.weft{position:absolute;z-index:1;inset-inline:1%;inset-block-end:-4px;block-size:8px;border-block:1px solid var(--gold);
+  background:repeating-linear-gradient(55deg,transparent 0 3px,var(--gold) 3px 4px),var(--night3);pointer-events:none}
+.arch--s{display:none}
+.motes{position:absolute;inset:0;pointer-events:none}
+.motes i{position:absolute;inline-size:5px;block-size:5px;border-radius:50%;opacity:0;background:radial-gradient(circle,#fff6db 0,#ecd49a 55%,transparent 100%)}
+.motes i:nth-child(1){left:9%;bottom:14%}.motes i:nth-child(2){left:20%;bottom:34%}.motes i:nth-child(3){left:79%;bottom:24%}
+.motes i:nth-child(4){left:90%;bottom:10%}.motes i:nth-child(5){left:14%;bottom:58%}.motes i:nth-child(6){left:85%;bottom:52%}
+.hx .hero__txt{position:relative;z-index:2;gap:0;margin-block-start:0;max-inline-size:560px}
+.hx h1{font-size:clamp(3.1rem,15.4vw,5.5rem);line-height:1.34;margin:0;padding-block-end:.04em}
+.hx .latin{margin:0 0 10px;display:flex;align-items:center;justify-content:center;gap:12px}
+.hx .latin::before,.hx .latin::after{content:"";display:block;flex:0 1 46px;inline-size:auto;block-size:1px;margin:0;box-shadow:none;background:linear-gradient(to right,transparent,var(--gold))}
+.hx .latin::after{background:linear-gradient(to left,transparent,var(--gold))}
+.hx .tag{font:600 1.1875rem/1.6 var(--ui);color:var(--cream)}
+.hx .lead{margin:4px auto 0;font-size:.9375rem;line-height:1.75;max-inline-size:36ch}
+.hx .cta{margin-block-start:16px}
+.hx .trio{margin-block-start:12px}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .hx h1{background:linear-gradient(100deg,transparent 42%,rgba(255,252,235,.95) 50%,transparent 58%) 0 0/260% 100% no-repeat,var(--g-text);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}}
+@media (min-width:900px){
+  .hx__stage{--ah:clamp(280px,40svh,420px)}
+  .arch--s{display:block;block-size:calc(var(--ah) * .8)}
+  .arch--s1{order:-1}
+  .hx .hero__txt{margin-block-start:2px}
+  .hx h1{font-size:clamp(4.5rem,7vw,6.25rem)}
+  .hx .tag{font-size:1.5rem}.hx .lead{font-size:1.0625rem;max-inline-size:46ch}
+  .hx .trio{margin-block-start:18px}
+}
+
 /* ---------- الأقسام: داكن إلى داكن، بلا شريط فاتح ---------- */
 .sec{position:relative;padding-block:clamp(60px,11vw,116px);background:radial-gradient(80% 36% at 50% 0,rgba(201,164,92,.08),transparent 70%),var(--night)}
 /* الأقسام البعيدة لا تُحسب ولا تُرسم حتى تقترب من الشاشة. قِيس الأثر بـscripts/measure/cpu.mjs */
@@ -307,6 +353,33 @@ select:focus,input:focus{outline:2px solid var(--goldhi);outline-offset:1px;bord
   /* لمعة تمرّ على الزر الذهبي كل بضع ثوانٍ (transform فقط) */
   .hero .cta .btn:not(.ghost)::after,.bar .btn:not(.ghost)::after{opacity:1;animation:glint 6.5s var(--ease) 1.6s infinite}
   @keyframes glint{0%{transform:translateX(0) skewX(-18deg)}22%,100%{transform:translateX(520%) skewX(-18deg)}}
+  /* واجهة الرئيسية: الإطار يُرسم، الصور تتبدل داخل القوس، الاسم يلمع، الزرّان يصلان بارتداد ناعم */
+  .arch__o,.arch__i{stroke-dasharray:1;animation:draw 1.5s cubic-bezier(.6,0,.2,1) both}
+  .arch__i{animation-duration:1.8s;animation-delay:.25s}
+  .arch--s .arch__o,.arch--s .arch__i{animation-delay:.5s}
+  @keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+  .arch__gem{transform-box:fill-box;transform-origin:center;animation:gem 3.6s ease-in-out infinite alternate}
+  @keyframes gem{from{opacity:.55;transform:scale(.85)}to{opacity:1;transform:scale(1.15)}}
+  .arch__win img{animation:kb 22s ease-in-out infinite alternate}
+  @keyframes kb{from{transform:scale(1)}to{transform:scale(1.1)}}
+  .arch__alt{animation:xf 21s linear infinite both}
+  .arch__alt~.arch__alt{animation-delay:7.14s}
+  @keyframes xf{0%,24%{opacity:0}30%,58%{opacity:1}64%,100%{opacity:0}}
+  .rose{animation:spin 170s linear infinite}
+  @keyframes spin{to{transform:rotate(1turn)}}
+  .motes i{animation:mote 9s linear infinite}
+  .motes i:nth-child(2){animation-duration:11s;animation-delay:-3s}.motes i:nth-child(3){animation-duration:10s;animation-delay:-6s}
+  .motes i:nth-child(4){animation-delay:-1.5s}.motes i:nth-child(5){animation-duration:12s;animation-delay:-8s}.motes i:nth-child(6){animation-duration:10.5s;animation-delay:-4.5s}
+  @keyframes mote{0%{opacity:0;transform:translate3d(0,0,0) scale(.5)}15%{opacity:.9}78%{opacity:.6}100%{opacity:0;transform:translate3d(-14px,-200px,0) scale(1.25)}}
+  .weft{animation:unfold .9s var(--ease) .7s backwards}
+  @keyframes unfold{from{transform:scaleX(0)}}
+  .hx h1{animation:up .8s var(--ease) .35s backwards,shine 7.5s ease-in-out 1.3s infinite}
+  @keyframes shine{0%{background-position:0 0,0 0}17%,100%{background-position:100% 0,0 0}}
+  .hx .latin,.hx .tag,.hx .lead{animation:up .8s var(--ease) .5s backwards}
+  .hx .tag{animation-delay:.58s}.hx .lead{animation-delay:.66s}
+  .hx .cta{animation:pop .75s linear(0,.55 18%,.92 36%,1.08 52%,.98 68%,1) .82s backwards}
+  @keyframes pop{from{opacity:0;transform:translateY(20px) scale(.92)}}
+  .hx .trio{animation:up .8s var(--ease) 1s backwards}
   .panel{animation:drop .34s var(--ease) both}
   @keyframes drop{from{opacity:0;transform:translateY(-10px) scale(.98)}}
   .faq details[open] p{animation:up .4s var(--ease) both}
@@ -325,6 +398,9 @@ select:focus,input:focus{outline:2px solid var(--goldhi);outline-offset:1px;bord
     /* عمق: صورة الواجهة تتحرك أبطأ من الصفحة */
     .hero__img{animation:depth linear both;animation-timeline:scroll(root);animation-range:0 100svh}
     @keyframes depth{to{transform:translateY(14%)}}
+    /* الخروج: القوس ينسحب إلى الخلف ويخفت والصفحة تصعد فوقه */
+    .hx__stage{animation:exit linear both;animation-timeline:scroll(root);animation-range:0 85svh}
+    @keyframes exit{to{transform:translateY(70px) scale(.9);opacity:.25}}
     /* الزرّان في الواجهة، والشريط السفلي ينزلق بعد تجاوزها */
     .home .cta{display:grid}
     .home .bar{animation:barin linear both;animation-timeline:scroll(root);animation-range:60svh 86svh}

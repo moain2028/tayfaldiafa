@@ -40,6 +40,7 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 - `site/public/fonts/amiri-700-subset.woff2` ونص رخصته. `docs/design/preview/home-390-v2.jpg` و`cards-390-v2.jpg`. بيانات: `site-v2-lighthouse.json` و`site-v2-responsive.json`.
 
 ### Changed
+- **واجهة الرئيسية الثالثة (مقترح، [ADR-0005](docs/adr/0005-hero-arch.md)):** الصورة داخل قوس مدبَّب بإطار ذهبي يرسم نفسه، وردة هندسية خلفه، شريط منسوج أسفله، الاسم كبيرًا تحته، قوسان جانبيان على الشاشات العريضة، وخروج مع التمرير. أول شاشة فقط؛ ما تحتها بلا تغيير. `site-smoke.mjs` يتجاهل الطبقات الزخرفية (`data-deco`) في فحص «لا شيء باهت».
 - `site/src/styles.css`: **أُعيدت كتابتها كلها** (داكن، موسَّط، كبسولات، زجاج، ظلال متراكبة، حركة أغنى). `site/build.mjs`: قالب الواجهة والشعار. `site/content/home.json`: حقول الواجهة.
 - `docs/adr/0003-visual-direction.md`: حلّ محلّه 0004 بعد رفض المالك.
 - `scripts/measure/responsive.mjs`: ‏`RESP_WIDTHS` لمقاسات إضافية.

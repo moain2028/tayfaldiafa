@@ -73,7 +73,7 @@ function pic(key, sizes, { eager = false, alt } = {}) {
     (eager ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"') + '></picture>';
 }
 const S = { // قيم sizes بحسب موضع الصورة
-  hero: '(min-width:900px) 60vw, 100vw', rail: '(min-width:900px) 30vw, (min-width:600px) 46vw, 78vw', q: '(min-width:900px) 23vw, 46vw',
+  hero: '(min-width:900px) 60vw, 100vw', arch: '(min-width:900px) 352px, 76vw', archS: '272px', rail: '(min-width:900px) 30vw, (min-width:600px) 46vw, 78vw', q: '(min-width:900px) 23vw, 46vw',
   wide: '(min-width:900px) 55vw, 100vw', half: '(min-width:900px) 42vw, 100vw', small: '(min-width:900px) 30vw, 50vw',
 };
 
@@ -87,6 +87,13 @@ const logo = () => `<a class="logo" href="/" aria-label="طيف الضيافة،
 const more = (slug) => `<a class="more" href="${url(slug)}">${esc(label(slug))}${I.arrow}</a>`;
 const mores = (list) => { const l = list.filter(live); return l.length ? `<p class="mores">${l.map(more).join('')}</p>` : ''; };
 const head = (k, h2, lead, cls = '') => `<div class="head rv ${cls}"><div>${k ? `<p class="k">${esc(k)}</p>` : ''}<h2>${esc(h2)}</h2></div>${lead ? `<p class="lead">${esc(lead)}</p>` : ''}</div>`;
+
+
+// الواجهة: الصورة داخل قوس مدبّب بإطار ذهبي يرسم نفسه. القوس الأوسط تتبدل صوره؛ الجانبيان يظهران على الشاشات العريضة فقط.
+const ARCH_D = 'M20 400V170C20 100 70 70 120 52Q150 41.2 160 14Q170 41.2 200 52C250 70 300 100 300 170V400';
+const archSvg = (defs) => `<svg class="arch__fr" data-deco viewBox="0 0 320 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">${defs ? '<defs><linearGradient id="ag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f8e9bd"/><stop offset=".45" stop-color="#c9a45c"/><stop offset=".75" stop-color="#9f7732"/><stop offset="1" stop-color="#ecd49a"/></linearGradient></defs>' : ''}<path class="arch__o" pathLength="1" d="${ARCH_D}Z" fill="none" stroke="url(#ag)" stroke-width="3"/><path class="arch__i" pathLength="1" transform="translate(160 400) scale(.92) translate(-160 -400)" d="${ARCH_D}" fill="none" stroke="#ecd49a" stroke-opacity=".6" stroke-width="1"/><path class="arch__gem" d="M160 0l6 8-6 8-6-8z" fill="url(#ag)"/></svg>`;
+const arch = (keys, cls, sizes, eager) => `<div class="arch ${cls}"><div class="arch__win">${keys.map((k, i) => (i ? `<div class="arch__alt" data-deco aria-hidden="true">${pic(k, sizes, { alt: '' })}</div>` : pic(k, sizes, { eager }))).join('')}</div>${archSvg(eager)}${eager ? '<span class="weft" data-deco aria-hidden="true"></span>' : ''}</div>`;
+const ROSE = '<svg class="rose" data-deco viewBox="-120 -120 240 240" aria-hidden="true" focusable="false"><defs><path id="pt" d="M0-112Q24-80 0-42Q-24-80 0-112Z"/></defs><g fill="none" stroke="#c9a45c" stroke-width=".5"><circle r="112"/><circle r="78"/><circle r="20"/><rect x="-55" y="-55" width="110" height="110"/><rect x="-55" y="-55" width="110" height="110" transform="rotate(45)"/><g id="r2"><use href="#pt"/><use href="#pt" transform="rotate(45)"/></g><g id="r4"><use href="#r2"/><use href="#r2" transform="rotate(90)"/></g><use href="#r4" transform="rotate(180)"/><use href="#r4" transform="rotate(22.5) scale(.62)"/><use href="#r4" transform="rotate(202.5) scale(.62)"/></g></svg>';
 
 // ---------- القوالب المشتركة ----------
 function header(current) {
@@ -204,17 +211,17 @@ function renderHome() {
   const H = cfg.home, K = H.kickers, h = home;
   const card = (it, key, ratio, sizes) => `<div class="card"><div class="ph ${ratio}">${pic(key, sizes)}</div><h3>${esc(it.t)}</h3><p>${esc(it.d)}</p></div>`;
   const numbered = (items, cls) => `<ol class="${cls} rv2">${items.map((it, i) => `<li><span class="num" aria-hidden="true">${arNum(i + 1)}</span><h3>${esc(it.t)}</h3><p>${esc(it.d)}</p></li>`).join('')}</ol>`;
-  const body = `<div class="hero" id="top">
-<div class="hero__img">${pic(H.hero, S.hero, { eager: true })}</div>
+  const body = `<div class="hero hx" id="top">
+<div class="hx__stage">
+${ROSE}
+<div class="motes" data-deco aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="arches">${arch([H.hero, ...H.heroAlt], 'arch--c', S.arch, true)}${arch([H.heroSide[0]], 'arch--s arch--s1', S.archS)}${arch([H.heroSide[1]], 'arch--s arch--s2', S.archS)}</div>
+</div>
 <div class="hero__txt">
-<div class="glass">
-<p class="eyebrow" lang="en" dir="ltr" aria-hidden="true">${esc(h.hero.eyebrow)}</p>
 <h1>${esc(h.hero.h1)}</h1>
 <p class="latin" lang="en" dir="ltr" aria-hidden="true">${esc(h.hero.latin)}</p>
 <p class="tag">${esc(h.hero.kicker)}</p>
 <p class="lead">${esc(h.hero.lead)}</p>
-<ul class="chips">${h.hero.chips.map((c) => `<li>${esc(c)}</li>`).join('')}</ul>
-</div>
 <div class="cta">${btnWa('', '', '#talab')}${btnTel('ghost', '#talab')}</div>
 <ul class="trio">${h.hero.trio.map((t) => `<li><b>${esc(t.t)}</b><span>${esc(t.d)}</span></li>`).join('')}</ul>
 </div>

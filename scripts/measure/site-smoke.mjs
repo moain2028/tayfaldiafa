@@ -35,7 +35,7 @@ setTimeout(() => { console.log('FAIL — watchdog: the test did not finish in 15
   page.on('console', (m) => m.type() === 'error' && errs.push(m.text())); page.on('pageerror', (e) => errs.push(String(e)));
   let wa = null; await page.route(/^https:\/\/wa\.me\//, (r) => { wa = r.request().url(); r.fulfill({ status: 200, contentType: 'text/html', body: 'ok' }); });
   await page.goto(base + '/', { waitUntil: 'networkidle' }); await page.waitForTimeout(2500);
-  const faded = await page.evaluate(() => [...document.querySelectorAll('main *')].filter((el) => { const b = el.getBoundingClientRect(); return b.width && b.height && b.bottom > 0 && b.top < innerHeight && +getComputedStyle(el).opacity < 0.99; }).map((el) => el.className || el.tagName));
+  const faded = await page.evaluate(() => [...document.querySelectorAll('main *')].filter((el) => { const b = el.getBoundingClientRect(); return !el.closest('[data-deco]') && b.width && b.height && b.bottom > 0 && b.top < innerHeight && +getComputedStyle(el).opacity < 0.99; }).map((el) => el.className || el.tagName));
   t('first screen: nothing left faded after load', faded.length === 0, faded.slice(0, 4).join(', '));
   const sdSupported = await page.evaluate(() => CSS.supports('animation-timeline: view()'));
   if (sdSupported) {
