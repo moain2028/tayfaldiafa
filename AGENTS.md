@@ -10,9 +10,12 @@
 4. [LESSONS.md](LESSONS.md) ثم [docs/research/inherited-lessons.md](docs/research/inherited-lessons.md) — أخطاء لا تُكرَّر.
 5. [docs/research/standards.md](docs/research/standards.md) — المعايير المتحقق منها بمصادرها.
 6. [docs/design/architecture.md](docs/design/architecture.md) و [docs/adr/](docs/adr/) — القرارات ولماذا.
+7. [docs/research/own-sites-study.md](docs/research/own-sites-study.md) و [luxury-ux-research.md](docs/research/luxury-ux-research.md) — ما دُرس وما يؤخذ منه.
+8. [skills/](skills/README.md) — الخطوات والبوابات لبناء الموقع. اقرأ المهارة التي تخص مهمتك قبل البدء.
 
 ## الأوامر
 - فحص سلامة الذاكرة: `node scripts/check-memory.mjs` (يجب أن ينجح قبل كل commit)
+- قياس موقع (أول شاشة + Lighthouse): [scripts/measure/README.md](scripts/measure/README.md)
 - أوامر البناء والاختبار: لا توجد بعد — التقنية لم تُحسم ([ADR-0002](docs/adr/0002-tech-stack.md)).
 
 ## القواعد
@@ -22,6 +25,8 @@
 - **«لا أراه» ليست «غير موجود».** عند تعذر الوصول لمورد اذكر السبب المرجّح، ولا تنفِ وجوده.
 - قرار ← [docs/adr/](docs/adr/) · مشكلة أخذت أكثر من 30 دقيقة ← [LESSONS.md](LESSONS.md) · متطلب ← [docs/requirements/](docs/requirements/).
 - القرارات التجارية والبصرية (الاسم، الألوان، الصور، النصوص التسويقية، النشر) يقررها المالك. اعرض الخيارات بأدلتها.
+- **المستودع عام.** لا يدخله هاتف ولا رمز ولا بيانات عملاء ولا كود أو نص من مستودع خاص للمالك. مخرجات القياس الخام واللقطات ونسخ المستودعات تبقى في `.tools/` و`.refs/` (مستثناة من git).
+- كل الملفات المؤقتة داخل مجلد المشروع، لا في `/tmp`.
 - Git: فرع `main` على `moain2028/tayfaldiafa`. commit لكل جولة عمل ثم push. لا force-push ولا إعادة كتابة تاريخ.
 
 ## نهاية كل جلسة (إلزامي)

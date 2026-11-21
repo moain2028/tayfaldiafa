@@ -69,5 +69,7 @@ updated: 2026-11-21
 | 29 | وثّق ما جُرِّب وفشل | ○ |
 
 ## لم أقرأه (قد يفيد لاحقًا)
+**تحديث 2026-11-21:** `qahwajeen` و`keif-aldiafa-web` (نسخة `MoTechSys-`) دُرسا لاحقًا بالبناء والقياس: [own-sites-study.md](own-sites-study.md). وما فُتح من باقي الحساب في [account-inventory.md](account-inventory.md). القائمة أدناه كما كُتبت في الجولة الأولى.
+
 باقي وثائق `keif-aldiafa-web` (مستودع osoul يذكر أن فيه 75 وثيقة) · `royal-coffee-hospitality/DIAFA_ANALYSIS.md` · `kaif-al-diyafa-2027` · `keif-aldiafa-v3` · `pro-kief-3` · `qahwajeen` · `Digital-Luxury-Design` · مستودعات الميديا (`*-media`, `keif-aldiafa-assets`).
 استخدام أي صور منها يحتاج إذن المالك: مستودع osoul يسجّل أن الصور هناك «مستثناة بأمر المالك».

@@ -1,0 +1,157 @@
+{
+ "meta": {
+  "lighthouse": "13.6.0",
+  "formFactor": "mobile",
+  "throttling": "simulate",
+  "cpuSlowdown": 4
+ },
+ "sites": {
+  "diafat-alkaif": {
+   "runs": 3,
+   "perfRuns": [
+    74,
+    59,
+    75
+   ],
+   "lcpMsRuns": [
+    3907,
+    4715,
+    4503
+   ],
+   "tbtMsRuns": [
+    540,
+    430,
+    376
+   ],
+   "median": {
+    "perf": 74,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 69,
+    "fcpMs": 1402,
+    "lcpMs": 4503,
+    "tbtMs": 430,
+    "cls": 0,
+    "kb": 1536
+   },
+   "benchmarkIndex": [
+    1257,
+    1165.5,
+    1238.5
+   ],
+   "failing": [
+    "is-crawlable"
+   ]
+  },
+  "keif-web": {
+   "runs": 3,
+   "perfRuns": [
+    47,
+    85,
+    80
+   ],
+   "lcpMsRuns": [
+    4783,
+    3110,
+    3105
+   ],
+   "tbtMsRuns": [
+    2002,
+    358,
+    550
+   ],
+   "median": {
+    "perf": 80,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "fcpMs": 1081,
+    "lcpMs": 3110,
+    "tbtMs": 550,
+    "cls": 0,
+    "kb": 1046
+   },
+   "benchmarkIndex": [
+    1207.5,
+    1240,
+    1135.5
+   ],
+   "failing": []
+  },
+  "luxe-platform": {
+   "runs": 3,
+   "perfRuns": [
+    83,
+    85,
+    94
+   ],
+   "lcpMsRuns": [
+    947,
+    873,
+    915
+   ],
+   "tbtMsRuns": [
+    705,
+    609,
+    299
+   ],
+   "median": {
+    "perf": 85,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 66,
+    "fcpMs": 915,
+    "lcpMs": 915,
+    "tbtMs": 609,
+    "cls": 0,
+    "kb": 333
+   },
+   "benchmarkIndex": [
+    1248.5,
+    1244.5,
+    1218
+   ],
+   "failing": [
+    "label-content-name-mismatch",
+    "is-crawlable"
+   ]
+  },
+  "qahwajeen": {
+   "runs": 3,
+   "perfRuns": [
+    95,
+    90,
+    94
+   ],
+   "lcpMsRuns": [
+    1376,
+    1357,
+    1314
+   ],
+   "tbtMsRuns": [
+    255,
+    401,
+    267
+   ],
+   "median": {
+    "perf": 94,
+    "a11y": 100,
+    "bp": 100,
+    "seo": 100,
+    "fcpMs": 1357,
+    "lcpMs": 1357,
+    "tbtMs": 267,
+    "cls": 0,
+    "kb": 455
+   },
+   "benchmarkIndex": [
+    1254,
+    1168,
+    1210.5
+   ],
+   "failing": [
+    "label-content-name-mismatch"
+   ]
+  }
+ }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "site-measure",
+  "private": true,
+  "type": "module",
+  "dependencies": { "lighthouse": "13.6.0", "playwright": "1.65.1" }
+}

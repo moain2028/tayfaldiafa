@@ -10,7 +10,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const errors = [];
 const warnings = [];
 const STANDARDS_MAX_AGE_DAYS = 90;
-const SKIP_DIRS = new Set(['.git', 'node_modules', 'dist', '.astro', '.next', '.vercel', '.wrangler']);
+const SKIP_DIRS = new Set(['.git', '.refs', '.tools', 'node_modules', 'dist', '.astro', '.next', '.vercel', '.wrangler']);
 
 const REQUIRED = [
   'AGENTS.md', 'CLAUDE.md', 'GEMINI.md', 'README.md', 'STATUS.md', 'LESSONS.md', 'CHANGELOG.md',

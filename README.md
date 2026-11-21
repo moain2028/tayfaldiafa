@@ -1,6 +1,6 @@
 # tayfaldiafa
 
-موقع ضيافة فاخر — **قيد التأسيس**. لا يوجد كود للموقع بعد؛ الموجود حاليًا هو نظام الذاكرة والمعايير المرجعية.
+موقع ضيافة فاخر — **قيد التأسيس**. لا يوجد كود للموقع بعد؛ الموجود حاليًا: نظام الذاكرة، المعايير المرجعية، دراسة مقيسة لمواقع سابقة، بحث الفخامة وتجربة الاستخدام، ومسودة مهارات لبناء مواقع العملاء.
 
 | أنا… | أبدأ من |
 |---|---|
@@ -20,6 +20,11 @@
 | [docs/research/standards.md](docs/research/standards.md) | ما المعايير الحالية، وما مصدر كل منها؟ |
 | [docs/research/inherited-lessons.md](docs/research/inherited-lessons.md) | ماذا تعلّمنا من مواقع الضيافة السابقة للمالك؟ |
 | [docs/research/reference-sites.md](docs/research/reference-sites.md) | دراسة المواقع المرجعية |
+| [docs/research/own-sites-study.md](docs/research/own-sites-study.md) | ماذا نأخذ من مواقع المالك الأربعة وماذا نترك؟ |
+| [docs/research/luxury-ux-research.md](docs/research/luxury-ux-research.md) | كيف تبدو الفخامة وكيف تُبنى أول شاشة ورحلة التمرير؟ |
+| [docs/research/account-inventory.md](docs/research/account-inventory.md) | ما الموجود في حساب المالك وما قُرئ منه؟ |
+| [skills/](skills/README.md) | ما الخطوات لبناء موقع عميل جديد؟ |
+| [scripts/measure/](scripts/measure/README.md) | كيف نقيس موقعًا؟ |
 | [LESSONS.md](LESSONS.md) | أخطاء هذا المشروع وكيف نمنع تكرارها |
 | [docs/adr/](docs/adr/) | القرارات: ماذا ولماذا وما البدائل |
 | [docs/design/architecture.md](docs/design/architecture.md) | المعمارية والميزانيات |
